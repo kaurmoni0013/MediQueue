@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Plus, UserPlus, Loader2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { getErrorMessage } from '../../services/api';
+import ThemeToggle from '../../components/ThemeToggle';
 
 export default function RegisterPage() {
   const { register } = useAuth();
@@ -31,6 +32,7 @@ export default function RegisterPage() {
 
   return (
     <div className="auth-shell">
+      <ThemeToggle className="auth-theme-toggle" />
       <div>
         <div className="auth-logo">
           <span className="brand-mark">

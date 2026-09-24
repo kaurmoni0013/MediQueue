@@ -57,6 +57,47 @@
   --font-mono: 'JetBrains Mono', 'IBM Plex Mono', 'Space Mono', 'Fira Mono', 'Cascadia Mono', Consolas, monospace;
 }
 
+/* Light theme — same "queue ticket / scanner" language, white surfaces.
+   The amber accent, mono numerals, square corners and LED statuses carry over. */
+:root[data-theme='light'] {
+  --bg: #f1f4f6;
+  --surface: #ffffff;
+  --surface-subtle: #f6f9fb;
+  --surface-raised: #ffffff;
+  --border: #e1e7ec;
+  --border-strong: #c4cfd7;
+
+  --text: #1b2730;
+  --text-secondary: #3c4c56;
+  --text-muted: #64737e;
+  --text-faint: #8e9ba5;
+
+  --primary: #e8900c;
+  --primary-hover: #f5a623;
+  --primary-active: #d17f06;
+  --primary-soft: rgba(232, 144, 12, 0.12);
+  --primary-contrast: #1a1203;
+
+  --scheduled-bg: rgba(90, 143, 176, 0.13);
+  --scheduled-text: #3f7396;
+  --waiting-bg: rgba(232, 144, 12, 0.13);
+  --waiting-text: #b97208;
+  --in-consult-bg: rgba(38, 158, 104, 0.13);
+  --in-consult-text: #158453;
+  --completed-bg: rgba(38, 158, 104, 0.14);
+  --completed-text: #1a8054;
+  --cancelled-bg: rgba(214, 71, 90, 0.12);
+  --cancelled-text: #cf3d51;
+
+  --success: #1a8054;
+  --warning: #b97208;
+  --danger: #cf3d51;
+  --info: #3f7396;
+
+  --shadow-card: 0 1px 2px rgba(20, 40, 55, 0.05);
+  --shadow-modal: 0 16px 40px rgba(20, 40, 55, 0.18), 0 0 0 1px var(--border);
+}
+
 * { box-sizing: border-box; }
 
 html, body { margin: 0; padding: 0; background: var(--bg); }
@@ -159,7 +200,11 @@ a:hover { text-decoration: underline; }
 .sidebar-footer {
   border-top: 1px solid var(--border);
   padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
+.sidebar-footer .theme-toggle { align-self: flex-start; }
 
 .user-chip {
   display: flex;
@@ -252,6 +297,7 @@ a:hover { text-decoration: underline; }
   white-space: nowrap;
 }
 .mobile-nav .nav-link { width: auto; padding: 7px 12px; }
+.mobile-nav .theme-toggle { flex-shrink: 0; }
 
 @media (max-width: 980px) {
   .sidebar { display: none; }
@@ -815,6 +861,7 @@ table.table {
 
 /* Login */
 .auth-shell {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -825,6 +872,11 @@ table.table {
     var(--bg);
 }
 .auth-card { width: 100%; max-width: 400px; }
+.auth-theme-toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
 .auth-logo { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 8px; }
 .auth-title { text-align: center; font-family: var(--font-mono); font-size: 17px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; }
 .auth-sub { text-align: center; color: var(--text-muted); font-size: 13px; margin-bottom: 20px; }

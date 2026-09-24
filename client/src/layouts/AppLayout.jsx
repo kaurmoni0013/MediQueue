@@ -17,6 +17,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import { useIdleLogout } from '../hooks/useIdleLogout';
 import { initials } from '../utils/format';
+import ThemeToggle from '../components/ThemeToggle';
 
 const NAV = {
   PATIENT: [
@@ -120,6 +121,7 @@ export default function AppLayout() {
               <LogOut size={15} />
             </button>
           </div>
+          <ThemeToggle />
         </div>
       </aside>
 
@@ -143,6 +145,7 @@ export default function AppLayout() {
             <button className="nav-link" onClick={onLogout} style={{ width: 'auto' }}>
               <LogOut size={15} /> Sign out
             </button>
+            <ThemeToggle />
           </div>
         </header>
 
