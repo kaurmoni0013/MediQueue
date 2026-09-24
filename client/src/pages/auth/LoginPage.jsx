@@ -6,6 +6,7 @@ import { getErrorMessage } from '../../services/api';
 import ThemeToggle from '../../components/ThemeToggle';
 
 const DEMO = [
+  { role: 'Admin', email: 'admin@mediqueue.com', password: 'Admin1234' },
   { role: 'Patient', email: 'patient@mediqueue.com', password: 'Patient1234' },
   { role: 'Staff', email: 'staff@mediqueue.com', password: 'Staff1234' },
   { role: 'Doctor', email: 'ananya@mediqueue.com', password: 'Doctor1234' },
@@ -19,7 +20,8 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
 
-  const homeFor = (role) => (role === 'STAFF' ? '/staff/dashboard' : role === 'DOCTOR' ? '/doctor/dashboard' : '/patient/dashboard');
+  const homeFor = (role) =>
+  role === 'STAFF' ? '/staff/dashboard' : role === 'DOCTOR' ? '/doctor/dashboard' : role === 'ADMIN' ? '/admin/dashboard' : '/patient/dashboard';
 
   const submit = async (e) => {
     e.preventDefault();
