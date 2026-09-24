@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Environment files (never commit secrets)
+.env
+client/.env
+server/.env
+
+# Build output
+client/dist/
+
+# Logs
+*.log
+server.log
+server-err.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Vite cache
+client/node_modules/.vite/
