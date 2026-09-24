@@ -226,12 +226,26 @@ async function setPatientActive(id, isActive) {
 
 async function summary() {
   const today = dateKey(new Date());
-  const [totalDoctors, totalStaff, totalPatients, todayAppointments, todayByStatus] = await Promise.all([
+  const [totalDoctors, totalStaff, totalPatients, todayAppointments, todayByStatus, byDoctor, recentPatients] = await Promise.all([
     User.countDocuments({ role: ROLES.DOCTOR }),
     User.countDocuments({ role: ROLES.STAFF }),
     User.countDocuments({ role: ROLES.PATIENT }),
     Appointment.countDocuments({ date: today }),
     Appointment.aggregate([{ $match: { date: today } }, { $group: { _id: '$status', count: { $sum: 1 } } }]),
+    Appointment.aggregate([
+      { $match: { date: today } },
+      {
+        $group: {
+          _id: '$doctor',
+          total: { $sum: 1 },
+          SCHEDULED: { $sum: { $cond: [{ $eq: ['$status', 'SCHEDULED'] }, 1, 0] } },
+          WAITING: { $sum: { $cond: [{ $eq: ['$status', 'WAITING'] }, 1, 0] } },
+          IN_CONSULT: { $sum: { $cond: [{ $eq: ['$status', 'IN_CONSULT'] }, 1, 0] } },
+          COMPLETED: { $sum: { $cond: [{ $eq: ['$status', 'COMPLETED'] }, 1, 0] } },
+        },
+      },
+    ]),
+    User.find({ role: ROLES.PATIENT }).sort('-createdAt').limit(5).select('name email createdAt isActive').lean(),
   ]);
 
   const statusCounts = { SCHEDULED: 0, WAITING: 0, IN_CONSULT: 0, COMPLETED: 0, CANCELLED: 0 };
@@ -241,13 +255,38 @@ async function summary() {
 
   const activeToday = ACTIVE_STATUSES.reduce((sum, s) => sum + (statusCounts[s] || 0), 0);
 
+  const doctorsById = await DoctorProfile.find({ user: { $in: byDoctor.map((row) => row._id) } })
+    .populate('user', 'name specialization')
+    .lean();
+  const doctorNames = new Map(doctorsById.map((profile) => [String(profile.user ? profile.user._id : profile._id), profile.user ? profile.user.name : 'Unknown']));
+
+  const todayByDoctor = byDoctor
+    .sort((a, b) => b.total - a.total)
+    .map((row) => ({
+      doctorId: String(row._id),
+      name: doctorNames.get(String(row._id)) || 'Unknown doctor',
+      total: row.total,
+      SCHEDULED: row.SCHEDULED || 0,
+      WAITING: row.WAITING || 0,
+      IN_CONSULT: row.IN_CONSULT || 0,
+      COMPLETED: row.COMPLETED || 0,
+    }));
+
   return {
     counts: { doctors: totalDoctors, staff: totalStaff, patients: totalPatients },
     today: {
       total: todayAppointments,
       active: activeToday,
       byStatus: statusCounts,
+      byDoctor: todayByDoctor,
     },
+    recentPatients: recentPatients.map((p) => ({
+      id: String(p._id),
+      name: p.name,
+      email: p.email,
+      isActive: p.isActive,
+      joined: p.createdAt,
+    })),
   };
 }
 

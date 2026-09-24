@@ -7,7 +7,7 @@ const ApiError = require('../utils/ApiError');
 const { ERROR_CODES } = require('../utils/constants');
 
 function signToken(user) {
-  return jwt.sign({ sub: user._id.toString(), role: user.role }, config.jwtSecret, {
+  return jwt.sign({ sub: user._id.toString(), role: user.role, ver: user.tokenVersion || 0 }, config.jwtSecret, {
     expiresIn: config.jwtExpiresIn,
   });
 }
@@ -49,4 +49,14 @@ async function getMe(userId) {
   return safe;
 }
 
-module.exports = { register, login, getMe };
+/**
+ * Revokes every token issued to a user by bumping the token version.
+ * All previously issued JWTs fail the version check and become invalid —
+ * this is the server-side guarantee that "sign out" actually signs out.
+ */
+async function logout(userId) {
+  await User.updateOne({ _id: userId }, { $inc: { tokenVersion: 1 } });
+  return { success: true };
+}
+
+module.exports = { register, login, getMe, logout };

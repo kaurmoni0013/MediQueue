@@ -20,6 +20,7 @@ function errorHandler(err, _req, res, _next) {
     error = new ApiError(409, 'A record with that value already exists', ERROR_CODES.EMAIL_IN_USE);
   }
   if (!(error instanceof ApiError)) {
+    console.error('[raw error]', error && error.stack ? error.stack : error);
     error = new ApiError(500, 'Internal server error', 'INTERNAL_ERROR');
   }
   if (error.statusCode >= 500) console.error('[error]', error);

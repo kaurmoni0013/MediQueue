@@ -15,6 +15,7 @@ import {
   UserPlus,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useIdleLogout } from '../hooks/useIdleLogout';
 import { initials } from '../utils/format';
 
 const NAV = {
@@ -72,6 +73,8 @@ export default function AppLayout() {
     logout();
     navigate('/login');
   };
+
+  useIdleLogout({ onIdle: onLogout, timeoutMs: 10 * 60 * 1000 });
 
   const today = new Date().toLocaleDateString(undefined, {
     weekday: 'long',

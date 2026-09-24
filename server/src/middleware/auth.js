@@ -5,9 +5,16 @@ const ApiError = require('../utils/ApiError');
 const { ERROR_CODES } = require('../utils/constants');
 
 async function findUser(token) {
-  const payload = jwt.verify(token, config.jwtSecret);
+  let payload;
+  try {
+    payload = jwt.verify(token, config.jwtSecret);
+  } catch {
+    throw new ApiError(401, 'Session is invalid or expired', ERROR_CODES.UNAUTHORIZED);
+  }
   const user = await User.findById(payload.sub);
   if (!user || !user.isActive) return null;
+  // Token revocation: a logout bumps tokenVersion, invalidating older tokens.
+  if (payload.ver !== (user.tokenVersion || 0)) return null;
   return user;
 }
 

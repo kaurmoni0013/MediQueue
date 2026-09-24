@@ -16,4 +16,9 @@ const me = asyncHandler(async (req, res) => {
   res.json({ success: true, user });
 });
 
-module.exports = { register, login, me };
+const logout = asyncHandler(async (req, res) => {
+  const result = await authService.logout(req.user._id);
+  res.json({ success: true, ...result });
+});
+
+module.exports = { register, login, me, logout };

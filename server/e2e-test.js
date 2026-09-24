@@ -71,6 +71,8 @@ async function main() {
   check('staff blocked from doctor API', f2b.status === 403, `status=${f2b.status}`);
   const f3 = await req('GET', '/doctors', {});
   check('unauthenticated blocked', f3.status === 401, `status=${f3.status}`);
+  const malformed = await req('GET', '/auth/me', { token: 'not.a.jwt' });
+  check('malformed token rejected', malformed.status === 401, `status=${malformed.status}`);
 
   // 3. Doctors
   const dls = await req('GET', '/doctors', { token: patientToken });
@@ -259,6 +261,7 @@ async function main() {
 
   const adSummary = await req('GET', '/admin/summary', { token: adminToken });
   check('admin summary counts', adSummary.status === 200 && adSummary.json.counts.doctors >= 2 && typeof adSummary.json.today.total === 'number', `status=${adSummary.status}`);
+  check('admin summary by-doctor + recent patients', Array.isArray(adSummary.json.today.byDoctor) && Array.isArray(adSummary.json.recentPatients) && 'byStatus' in adSummary.json.today);
 
   const adList = await req('GET', '/admin/doctors', { token: adminToken });
   check('admin doctor list', adList.status === 200 && adList.json.doctors.length >= 2);
@@ -318,6 +321,14 @@ async function main() {
   const adPatOff = await req('PATCH', `/admin/patients/${adPatId}/active`, { token: adminToken, body: { isActive: false } });
   check('admin toggles patient', adPatOff.status === 200 && typeof adPatOff.json.isActive === 'boolean');
   await req('PATCH', `/admin/patients/${adPatId}/active`, { token: adminToken, body: { isActive: true } });
+
+  // 13. Session revocation — logging out must invalidate the token server-side
+  const lo = await req('POST', '/auth/logout', { token: demoToken });
+  check('logout revokes token', lo.status === 200, `status=${lo.status}`);
+  const revoked = await req('GET', '/auth/me', { token: demoToken });
+  check('revoked token rejected (401)', revoked.status === 401, `status=${revoked.status}`);
+  const relog = await req('POST', '/auth/login', { body: { email: demoUser.email, password: 'TestPass123' } });
+  check('fresh login after logout works', relog.status === 200 && relog.json.token, `status=${relog.status}`);
 
   // cleanup: remove the test user created by this run plus any appointments
   if (demoUser) {

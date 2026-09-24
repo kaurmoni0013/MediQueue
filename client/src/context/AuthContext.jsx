@@ -70,7 +70,12 @@ export function AuthProvider({ children }) {
     [applyAuth]
   );
 
-  const logout = useCallback(() => {
+  const logout = useCallback(async () => {
+    try {
+      await authApi.logout();
+    } catch {
+      // Best-effort server-side revocation; local session is cleared regardless.
+    }
     localStorage.removeItem('mq_token');
     localStorage.removeItem('mq_user');
     setUser(null);

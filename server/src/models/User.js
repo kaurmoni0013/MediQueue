@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema(
     dateOfBirth: { type: String, default: '' }, // ISO yyyy-mm-dd
     gender: { type: String, enum: ['', 'male', 'female', 'other'], default: '' },
     isActive: { type: Boolean, default: true },
+    tokenVersion: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

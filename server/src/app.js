@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const config = require('./config/env');
 const { notFound, errorHandler } = require('./middleware/error');
+const { apiLimiter, authLimiter } = require('./middleware/rateLimit');
 
 const authRoutes = require('./routes/authRoutes');
 const doctorRoutes = require('./routes/doctorRoutes');
@@ -21,6 +22,8 @@ if (config.env !== 'test') app.use(morgan('dev'));
 
 app.get('/api/health', (_req, res) => res.json({ success: true, service: 'mediqueue-api', time: new Date().toISOString() }));
 
+app.use('/api', apiLimiter);
+app.use('/api/auth', authLimiter);
 app.use('/api/auth', authRoutes);
 app.use('/api/doctors', doctorRoutes);
 app.use('/api/appointments', appointmentRoutes);
