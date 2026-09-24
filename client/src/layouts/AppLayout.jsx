@@ -11,6 +11,8 @@ import {
   LineChart,
   Activity,
   Plus,
+  ShieldCheck,
+  UserPlus,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { initials } from '../utils/format';
@@ -38,15 +40,22 @@ const NAV = {
     { to: '/doctor/history', label: 'Patient History', icon: Activity },
     { to: '/doctor/profile', label: 'Profile', icon: UserIcon },
   ],
+  ADMIN: [
+    { to: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { to: '/admin/doctors', label: 'Manage Doctors', icon: ShieldCheck },
+    { to: '/admin/staff', label: 'Manage Staff', icon: Users },
+    { to: '/admin/patients', label: 'Manage Patients', icon: UserPlus },
+  ],
 };
 
-const ROLE_LABEL = { PATIENT: 'Patient Portal', STAFF: 'Clinic Staff', DOCTOR: 'Doctor' };
-const ROLE_SUB = { PATIENT: 'Patient', STAFF: 'Staff', DOCTOR: 'Doctor' };
+const ROLE_LABEL = { PATIENT: 'Patient Portal', STAFF: 'Clinic Staff', DOCTOR: 'Doctor', ADMIN: 'Admin Console' };
+const ROLE_SUB = { PATIENT: 'Patient', STAFF: 'Staff', DOCTOR: 'Doctor', ADMIN: 'Administrator' };
 
 function useHome() {
   const { user } = useAuth();
   if (user?.role === 'STAFF') return '/staff/dashboard';
   if (user?.role === 'DOCTOR') return '/doctor/dashboard';
+  if (user?.role === 'ADMIN') return '/admin/dashboard';
   return '/patient/dashboard';
 }
 

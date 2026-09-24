@@ -34,7 +34,11 @@ function isDoctorAvailableOnDay(profile, key) {
 }
 
 async function listDoctors() {
-  const profiles = await DoctorProfile.find().populate('user', 'name email phone').sort('specialization name').lean();
+  const activeDoctorIds = await User.find({ role: 'DOCTOR', isActive: true }).distinct('_id');
+  const profiles = await DoctorProfile.find({ user: { $in: activeDoctorIds } })
+    .populate('user', 'name email phone')
+    .sort('specialization name')
+    .lean();
   return profiles.map(serializeProfile);
 }
 

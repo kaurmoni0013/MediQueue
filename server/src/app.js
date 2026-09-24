@@ -10,6 +10,7 @@ const doctorRoutes = require('./routes/doctorRoutes');
 const appointmentRoutes = require('./routes/appointmentRoutes');
 const staffRoutes = require('./routes/staffRoutes');
 const doctorWorkspaceRoutes = require('./routes/doctorWorkspaceRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use('/api/doctors', doctorRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/staff', staffRoutes);
 app.use('/api/doctor', doctorWorkspaceRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

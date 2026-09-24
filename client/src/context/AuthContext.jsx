@@ -7,6 +7,7 @@ const ROLE_INFO = {
   PATIENT: { label: 'Patient', home: '/patient/dashboard' },
   STAFF: { label: 'Clinic Staff', home: '/staff/dashboard' },
   DOCTOR: { label: 'Doctor', home: '/doctor/dashboard' },
+  ADMIN: { label: 'Administrator', home: '/admin/dashboard' },
 };
 
 export function AuthProvider({ children }) {

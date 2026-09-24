@@ -249,14 +249,90 @@ async function main() {
   const pg = await req('GET', '/staff/appointments?page=1&limit=5', { token: staffToken });
   check('staff pagination meta', pg.status === 200 && typeof pg.json.total === 'number' && pg.json.limit === 5);
 
+  // 12. Admin portal
+  const ad = await req('POST', '/auth/login', { body: { email: 'admin@mediqueue.com', password: 'Admin1234' } });
+  check('admin login', ad.status === 200 && ad.json.token, `status=${ad.status}`);
+  const adminToken = ad.json.token;
+
+  const adBlock = await req('GET', '/admin/summary', { token: staffToken });
+  check('staff blocked from admin API', adBlock.status === 403, `status=${adBlock.status}`);
+
+  const adSummary = await req('GET', '/admin/summary', { token: adminToken });
+  check('admin summary counts', adSummary.status === 200 && adSummary.json.counts.doctors >= 2 && typeof adSummary.json.today.total === 'number', `status=${adSummary.status}`);
+
+  const adList = await req('GET', '/admin/doctors', { token: adminToken });
+  check('admin doctor list', adList.status === 200 && adList.json.doctors.length >= 2);
+
+  // Create a new doctor (email unique)
+  const newEmail = `newdoc${Date.now()}@mediqueue.com`;
+  const adCreate = await req('POST', '/admin/doctors', {
+    token: adminToken,
+    body: {
+      name: 'Dr. Test Physician',
+      email: newEmail,
+      password: 'Doctor1234',
+      specialization: 'Dermatology',
+      qualification: 'MBBS, MD (Dermatology)',
+      experienceYears: 5,
+      consultationDuration: 20,
+      fees: 400,
+      availability: [{ day: 1, ranges: [{ start: '10:00', end: '13:00' }] }],
+    },
+  });
+  check('admin creates doctor', adCreate.status === 201 && adCreate.json.doctor.name === 'Dr. Test Physician', `status=${adCreate.status} msg=${adCreate.json.message}`);
+  const newDocId = adCreate.json.doctor.id;
+
+  // New doctor appears in public directory
+  const pubAfter = await req('GET', '/doctors', { token: patientToken });
+  check('new doctor visible to patients', pubAfter.json.doctors.some((d) => d.id === newDocId));
+
+  // Duplicate email rejected
+  const adDup = await req('POST', '/admin/doctors', { token: adminToken, body: { name: 'Dr. Dup', email: newEmail, password: 'Doctor1234', specialization: 'General' } });
+  check('admin duplicate email rejected', adDup.status === 409 && adDup.json.code === 'EMAIL_IN_USE', `status=${adDup.status}`);
+
+  // Deactivate doctor -> hidden from public listing
+  const adOff = await req('PATCH', `/admin/doctors/${newDocId}/active`, { token: adminToken, body: { isActive: false } });
+  check('admin deactivates doctor', adOff.status === 200 && adOff.json.isActive === false);
+  const pubAfterOff = await req('GET', '/doctors', { token: patientToken });
+  check('deactivated doctor hidden from patients', !pubAfterOff.json.doctors.some((d) => d.id === newDocId));
+
+  // Reactivate + update doctor profile
+  await req('PATCH', `/admin/doctors/${newDocId}/active`, { token: adminToken, body: { isActive: true } });
+  const adUpd = await req('PATCH', `/admin/doctors/${newDocId}`, { token: adminToken, body: { fees: 450, experienceYears: 6 } });
+  check('admin updates doctor', adUpd.status === 200 && adUpd.json.doctor.fees === 450 && adUpd.json.doctor.experienceYears === 6);
+
+  // Staff management
+  const newStaffEmail = `newstaff${Date.now()}@mediqueue.com`;
+  const adStaff = await req('POST', '/admin/staff', { token: adminToken, body: { name: 'Test Receptionist', email: newStaffEmail, password: 'Staff1234' } });
+  check('admin creates staff', adStaff.status === 201 && adStaff.json.member.name === 'Test Receptionist', `status=${adStaff.status}`);
+  const newStaffId = adStaff.json.member.id;
+  const adStaffList = await req('GET', '/admin/staff', { token: adminToken });
+  check('admin staff list', adStaffList.status === 200 && adStaffList.json.staff.length >= 2);
+  const adStaffOff = await req('PATCH', `/admin/staff/${newStaffId}/active`, { token: adminToken, body: { isActive: false } });
+  check('admin deactivates staff', adStaffOff.status === 200 && adStaffOff.json.isActive === false);
+
+  // Patients management
+  const adPat = await req('GET', '/admin/patients?search=Mehta', { token: adminToken });
+  check('admin patient search', adPat.status === 200 && adPat.json.patients.length >= 1);
+  const adPatId = adPat.json.patients[0].id;
+  const adPatOff = await req('PATCH', `/admin/patients/${adPatId}/active`, { token: adminToken, body: { isActive: false } });
+  check('admin toggles patient', adPatOff.status === 200 && typeof adPatOff.json.isActive === 'boolean');
+  await req('PATCH', `/admin/patients/${adPatId}/active`, { token: adminToken, body: { isActive: true } });
+
   // cleanup: remove the test user created by this run plus any appointments
   if (demoUser) {
     const mongoose = require('mongoose');
     const Appointment = require('./src/models/Appointment');
+    const DoctorProfile = require('./src/models/DoctorProfile');
     const User = require('./src/models/User');
     await mongoose.connect(require('./src/config/env').mongoUri, { serverSelectionTimeoutMS: 3000 });
     await Appointment.deleteMany({ patient: demoUser.id });
     await User.deleteOne({ _id: demoUser.id });
+    if (newDocId) {
+      await DoctorProfile.deleteMany({ user: newDocId });
+      await User.deleteOne({ _id: newDocId });
+    }
+    if (newStaffId) await User.deleteOne({ _id: newStaffId });
     await mongoose.disconnect();
     console.log('  ok  test data cleaned up');
   }

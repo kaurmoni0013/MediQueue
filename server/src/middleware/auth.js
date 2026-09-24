@@ -47,8 +47,9 @@ function requireRole(...roles) {
 const requirePatient = requireRole('PATIENT');
 const requireStaff = requireRole('STAFF');
 const requireDoctor = requireRole('DOCTOR');
+const requireAdmin = requireRole('ADMIN');
 
 // Explicitly scoped guard for patient-level routes.
 const requirePatientOnly = requirePatient;
 
-module.exports = { requireAuth, requireRole, requirePatient, requireStaff, requireDoctor, requirePatientOnly };
+module.exports = { requireAuth, requireRole, requirePatient, requireStaff, requireDoctor, requireAdmin, requirePatientOnly };

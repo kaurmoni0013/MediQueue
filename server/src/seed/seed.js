@@ -52,6 +52,7 @@ async function seed() {
   ]);
 
   /* ------------------------------ accounts ------------------------------ */
+  const admin = await createUser('Moni Kaur', 'admin@mediqueue.com', 'Admin1234', 'ADMIN', { phone: '+91 98200 10000' });
   const staff = await createUser('Ashwin Rao', 'staff@mediqueue.com', 'Staff1234', 'STAFF');
 
   const ananya = await createUser('Dr. Ananya Sharma', 'ananya@mediqueue.com', 'Doctor1234', 'DOCTOR', { phone: '+91 98200 11001' });
@@ -252,6 +253,7 @@ async function seed() {
 
   console.log('[seed] demo accounts created.');
   console.log('[seed] today:', today);
+  console.log('   ADMIN  admin@mediqueue.com    / Admin1234');
   console.log('   STAFF  staff@mediqueue.com   / Staff1234');
   console.log('   DOCTOR ananya@mediqueue.com  / Doctor1234');
   console.log('   DOCTOR rajiv@mediqueue.com   / Doctor1234');

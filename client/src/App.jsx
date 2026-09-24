@@ -27,6 +27,11 @@ import DoctorAppointmentsPage from './pages/doctor/AppointmentsPage';
 import DoctorHistoryPage from './pages/doctor/HistoryPage';
 import DoctorProfilePage from './pages/doctor/ProfilePage';
 
+import AdminDashboardPage from './pages/admin/DashboardPage';
+import AdminDoctorsPage from './pages/admin/DoctorsPage';
+import AdminStaffPage from './pages/admin/StaffPage';
+import AdminPatientsPage from './pages/admin/PatientsPage';
+
 export default function App() {
   return (
     <Routes>
@@ -71,6 +76,16 @@ export default function App() {
             <Route path="appointments" element={<DoctorAppointmentsPage />} />
             <Route path="history" element={<DoctorHistoryPage />} />
             <Route path="profile" element={<DoctorProfilePage />} />
+          </Route>
+        </Route>
+      {/* Admin area */}
+        <Route element={<RequireRole roles={['ADMIN']} />}>
+          <Route path="/admin" element={<AppLayout />}>
+            <Route index element={<HomeRedirect />} />
+            <Route path="dashboard" element={<AdminDashboardPage />} />
+            <Route path="doctors" element={<AdminDoctorsPage />} />
+            <Route path="staff" element={<AdminStaffPage />} />
+            <Route path="patients" element={<AdminPatientsPage />} />
           </Route>
         </Route>
       </Route>

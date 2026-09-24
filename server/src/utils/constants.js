@@ -1,4 +1,4 @@
-const ROLES = Object.freeze({ PATIENT: 'PATIENT', STAFF: 'STAFF', DOCTOR: 'DOCTOR' });
+const ROLES = Object.freeze({ PATIENT: 'PATIENT', STAFF: 'STAFF', DOCTOR: 'DOCTOR', ADMIN: 'ADMIN' });
 
 const APPOINTMENT_STATUS = Object.freeze({
   SCHEDULED: 'SCHEDULED',

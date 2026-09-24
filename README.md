@@ -16,9 +16,10 @@
 
 | **Portal** | **Who** | **Home** |
 | --- | --- | --- |
-| 🧑 Patient | The person being treated | `/patient/dashboard` |
-| 🧑‍💼 Staff | Front desk / reception | `/staff/dashboard` |
+| 🛡️ Admin | Clinic owner / manager | `/admin/dashboard` |
+| 🧑💼 Staff | Front desk / reception | `/staff/dashboard` |
 | 🩺 Doctor | Consulting physician | `/doctor/dashboard` |
+| 🧑 Patient | The person being treated | `/patient/dashboard` |
 
 Every route is guarded **twice** — client-side role guards *and* server-side role middleware with per-row ownership checks.
 
@@ -36,6 +37,7 @@ Every route is guarded **twice** — client-side role guards *and* server-side r
 - **Doctor tools** — now-serving screen, start/complete consultations with mandatory clinical notes, patient history.
 - **Dashboards** — KPIs for all three roles (today's totals, queue length, average duration, upcoming visits, wait time).
 - **Live updates** — auto-refresh via React Query polling keeps the queue current.
+- **Admin console** — full team management: add/edit/deactivate doctors (with schedule & availability), create/manage staff accounts, oversee patient accounts, and view clinic-wide stats.
 - **Hand-rolled design system** — responsive, accessible, no UI framework.
 
 ---
@@ -106,6 +108,7 @@ npm run dev                 # http://localhost:5174 (proxies /api → :5100)
 
 | Role | Email | Password |
 | --- | --- | --- |
+| 🛡️ Admin | `admin@mediqueue.com` | `Admin1234` |
 | 🧑‍💼 Staff | `staff@mediqueue.com` | `Staff1234` |
 | 🩺 Doctor | `ananya@mediqueue.com` | `Doctor1234` |
 | 🩺 Doctor | `rajiv@mediqueue.com` | `Doctor1234` |
@@ -142,6 +145,16 @@ PATCH /api/appointments/:id/cancel            Cancel (patient/staff)
 PATCH /api/appointments/:id/reschedule        Staff only
 GET  /api/staff/…                             Today, queue, appointments, patients, history, summary
 GET  /api/doctor/…                            Today, queue, appointments, patients, history
+GET  /api/admin/summary                       Admin dashboard stats          (ADMIN)
+GET  /api/admin/doctors                       List doctors + profiles         (ADMIN)
+POST /api/admin/doctors                       Create a doctor account         (ADMIN)
+PATCH /api/admin/doctors/:id                  Update doctor profile           (ADMIN)
+PATCH /api/admin/doctors/:id/active           Activate/deactivate doctor      (ADMIN)
+GET  /api/admin/staff                         List staff accounts             (ADMIN)
+POST /api/admin/staff                         Create a staff account          (ADMIN)
+PATCH /api/admin/staff/:id(/active)           Update / toggle staff           (ADMIN)
+GET  /api/admin/patients                      List patients (search + page)   (ADMIN)
+PATCH /api/admin/patients/:id/active          Activate/deactivate patient     (ADMIN)
 ```
 
 ---
