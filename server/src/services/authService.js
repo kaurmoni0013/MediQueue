@@ -25,7 +25,9 @@ async function register({ name, email, password, phone }) {
 
 async function login({ email, password }) {
   const user = await User.findOne({ email }).select('+passwordHash');
-  if (!user || !(await user.comparePassword(password))) {
+  // Treat legacy or malformed records like any other invalid credential.
+  // Calling bcrypt with a missing hash otherwise leaks an internal 500.
+  if (!user || !user.passwordHash || !(await user.comparePassword(password))) {
     throw new ApiError(401, 'Invalid email or password', ERROR_CODES.INVALID_CREDENTIALS);
   }
   if (!user.isActive) {

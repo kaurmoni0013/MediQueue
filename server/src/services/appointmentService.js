@@ -414,7 +414,7 @@ async function getDoctorToday(doctorId) {
 
   const appointments = await attachQueue(rows);
   const active = appointments.filter((a) => ACTIVE_STATUSES.includes(a.status));
-  const nowServing = appointments.find((a) => a.status === 'IN_CONSULT') || active[0] || null;
+  const nowServing = appointments.find((a) => a.status === 'IN_CONSULT') || null;
   const nextUp = active.find((a) => a.status !== 'IN_CONSULT') || null;
 
   return { date, summary, nowServing, nextUp, appointments };
