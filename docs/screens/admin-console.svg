@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1319"/>
+      <stop offset="1" stop-color="#0a0e12"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="64" fill="#10161c"/>
+  <circle cx="28" cy="32" r="6" fill="#ff5c72"/>
+  <circle cx="50" cy="32" r="6" fill="#f5a623"/>
+  <circle cx="72" cy="32" r="6" fill="#38c984"/>
+  <rect x="120" y="18" width="900" height="28" rx="4" fill="#182027"/>
+  <text x="135" y="37" font-family="'Courier New', Consolas, monospace" font-size="13" fill="#7e919e">app.mediqueue.local/admin/dashboard</text>
+
+  <rect y="64" width="1280" height="696" fill="url(#bg)"/>
+
+  <!-- sidebar -->
+  <rect x="0" y="64" width="238" height="696" fill="#0d1319" stroke="#1e2831"/>
+  <rect x="16" y="84" width="30" height="30" fill="#f5a623" rx="3"/>
+  <rect x="27" y="95" width="8" height="8" fill="#1a1203"/>
+  <text x="58" y="99" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="700" fill="#e8eef2">MediQueue</text>
+  <text x="58" y="115" font-family="'Courier New', Consolas, monospace" font-size="10" letter-spacing="1" fill="#51626d">CLINIC OPERATIONS</text>
+
+  <text x="16" y="152" font-family="'Courier New', Consolas, monospace" font-size="10" letter-spacing="2" fill="#51626d">ADMIN CONSOLE</text>
+
+  <g font-family="'Segoe UI', sans-serif" font-size="14">
+    <rect x="8" y="164" width="222" height="36" rx="4" fill="rgba(245,166,35,0.12)"/>
+    <rect x="8" y="164" width="3" height="36" fill="#f5a623"/>
+    <rect x="18" y="176" width="5" height="5" fill="#f5a623"/>
+    <text x="32" y="187" fill="#e8eef2" font-weight="600">Dashboard</text>
+    <rect x="18" y="222" width="5" height="5" fill="#51626d"/>
+    <text x="32" y="233" fill="#abbcca">Manage Doctors</text>
+    <rect x="18" y="262" width="5" height="5" fill="#51626d"/>
+    <text x="32" y="273" fill="#abbcca">Manage Staff</text>
+    <rect x="18" y="302" width="5" height="5" fill="#51626d"/>
+    <text x="32" y="313" fill="#abbcca">Manage Patients</text>
+  </g>
+
+  <rect x="12" y="686" width="214" height="54" rx="4" fill="#12181e" stroke="#1e2831"/>
+  <circle cx="40" cy="713" r="16" fill="#182027"/>
+  <text x="34" y="718" font-family="'Segoe UI', sans-serif" font-size="12" fill="#f5a623">MK</text>
+  <text x="64" y="712" font-family="'Segoe UI', sans-serif" font-size="13" fill="#e8eef2">Moni Kaur</text>
+  <text x="64" y="728" font-family="'Segoe UI', sans-serif" font-size="11" fill="#7e919e">Administrator</text>
+
+  <!-- main -->
+  <text x="266" y="116" font-family="'Segoe UI', sans-serif" font-size="12" fill="#51626d">Thursday, 24 September 2026</text>
+  <text x="266" y="152" font-family="'Segoe UI', sans-serif" font-size="26" font-weight="700" fill="#e8eef2">Clinic overview</text>
+  <text x="266" y="176" font-family="'Segoe UI', sans-serif" font-size="14" fill="#7e919e">Real-time operating picture for today.</text>
+
+  <!-- KPI strip -->
+  <g font-family="'Courier New', Consolas, monospace">
+    <rect x="266" y="200" width="216" height="84" rx="4" fill="#12181e" stroke="#1e2831"/>
+    <text x="284" y="230" font-size="11" letter-spacing="2" fill="#7e919e">DOCTORS</text>
+    <text x="284" y="264" font-size="26" font-weight="700" fill="#e8eef2">2</text>
+
+    <rect x="494" y="200" width="216" height="84" rx="4" fill="#12181e" stroke="#1e2831"/>
+    <text x="512" y="230" font-size="11" letter-spacing="2" fill="#7e919e">STAFF</text>
+    <text x="512" y="264" font-size="26" font-weight="700" fill="#e8eef2">1</text>
+
+    <rect x="722" y="200" width="216" height="84" rx="4" fill="#12181e" stroke="#1e2831"/>
+    <text x="740" y="230" font-size="11" letter-spacing="2" fill="#7e919e">PATIENTS</text>
+    <text x="740" y="264" font-size="26" font-weight="700" fill="#e8eef2">10</text>
+
+    <rect x="950" y="200" width="248" height="84" rx="4" fill="#12181e" stroke="rgba(245,166,35,0.4)"/>
+    <text x="968" y="230" font-size="11" letter-spacing="2" fill="#f5a623">APPOINTMENTS TODAY</text>
+    <text x="968" y="264" font-size="26" font-weight="700" fill="#f5a623">12</text>
+    <text x="1070" y="264" font-size="12" fill="#7e919e">· 7 active</text>
+  </g>
+
+  <!-- status breakdown -->
+  <text x="266" y="310" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" fill="#e8eef2">Today by status</text>
+  <g>
+    <rect x="266" y="322" width="932" height="34" rx="4" fill="#12181e" stroke="#1e2831"/>
+    <rect x="266" y="322" width="167" height="34" rx="4" fill="rgba(90,143,176,0.22)"/>
+    <rect x="433" y="322" width="125" height="34" rx="4" fill="rgba(245,166,35,0.22)"/>
+    <rect x="558" y="322" width="125" height="34" rx="4" fill="rgba(61,220,151,0.22)"/>
+    <rect x="683" y="322" width="125" height="34" rx="4" fill="rgba(56,201,132,0.22)"/>
+    <rect x="808" y="322" width="125" height="34" rx="4" fill="rgba(255,92,114,0.22)"/>
+
+    <text x="280" y="344" font-family="'Courier New', Consolas, monospace" font-size="14" font-weight="700" fill="#6fa9c9">3</text>
+    <text x="302" y="344" font-family="'Segoe UI', sans-serif" font-size="13" fill="#abbcca">SCHEDULED</text>
+    <text x="447" y="344" font-family="'Courier New', Consolas, monospace" font-size="14" font-weight="700" fill="#f5a623">2</text>
+    <text x="469" y="344" font-family="'Segoe UI', sans-serif" font-size="13" fill="#abbcca">WAITING</text>
+    <text x="572" y="344" font-family="'Courier New', Consolas, monospace" font-size="14" font-weight="700" fill="#3ddc97">1</text>
+    <text x="594" y="344" font-family="'Segoe UI', sans-serif" font-size="13" fill="#abbcca">IN_CONSULT</text>
+    <text x="697" y="344" font-family="'Courier New', Consolas, monospace" font-size="14" font-weight="700" fill="#38c984">5</text>
+    <text x="719" y="344" font-family="'Segoe UI', sans-serif" font-size="13" fill="#abbcca">COMPLETED</text>
+    <text x="822" y="344" font-family="'Courier New', Consolas, monospace" font-size="14" font-weight="700" fill="#ff5c72">1</text>
+    <text x="844" y="344" font-family="'Segoe UI', sans-serif" font-size="13" fill="#abbcca">CANCELLED</text>
+  </g>
+
+  <!-- per-doctor table -->
+  <text x="266" y="392" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" fill="#e8eef2">Per-doctor operating view</text>
+  <rect x="266" y="404" width="932" height="150" rx="4" fill="#12181e" stroke="#1e2831"/>
+
+  <g font-family="'Courier New', Consolas, monospace" font-size="12">
+    <text x="284" y="434" fill="#51626d">DOCTOR</text>
+    <text x="520" y="434" fill="#51626d">TODAY</text>
+    <text x="640" y="434" fill="#51626d">WAITING</text>
+    <text x="760" y="434" fill="#51626d">IN_CONSULT</text>
+    <text x="900" y="434" fill="#f5a623">QUEUE LENGTH</text>
+  </g>
+  <rect x="266" y="442" width="932" height="1" fill="#1e2831"/>
+
+  <g font-family="'Segoe UI', sans-serif" font-size="13">
+    <text x="284" y="474" fill="#e8eef2">Dr. Ananya Sharma</text>
+    <text x="284" y="492" font-size="11" fill="#51626d">General Medicine</text>
+    <text x="520" y="474" font-family="'Courier New', Consolas, monospace" fill="#e8eef2">7</text>
+    <text x="640" y="474" font-family="'Courier New', Consolas, monospace" fill="#f5a623">2</text>
+    <text x="772" y="474" font-family="'Courier New', Consolas, monospace" fill="#3ddc97">0</text>
+    <text x="924" y="474" font-family="'Courier New', Consolas, monospace" font-weight="700" fill="#f5a623">4</text>
+
+    <text x="284" y="528" fill="#e8eef2">Dr. Rajiv Kapoor</text>
+    <text x="284" y="546" font-size="11" fill="#51626d">Pediatrics</text>
+    <text x="520" y="528" font-family="'Courier New', Consolas, monospace" fill="#e8eef2">5</text>
+    <text x="640" y="528" font-family="'Courier New', Consolas, monospace" fill="#f5a623">2</text>
+    <text x="772" y="528" font-family="'Courier New', Consolas, monospace" fill="#3ddc97">1</text>
+    <text x="924" y="528" font-family="'Courier New', Consolas, monospace" font-weight="700" fill="#f5a623">3</text>
+  </g>
+
+  <!-- recent patients -->
+  <text x="266" y="582" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" fill="#e8eef2">Recently joined patients</text>
+  <rect x="266" y="594" width="932" height="130" rx="4" fill="#12181e" stroke="#1e2831"/>
+
+  <g font-family="'Courier New', Consolas, monospace" font-size="12">
+    <text x="284" y="624" fill="#51626d">PATIENT</text>
+    <text x="560" y="624" fill="#51626d">EMAIL</text>
+    <text x="880" y="624" fill="#51626d">JOINED</text>
+  </g>
+  <rect x="266" y="632" width="932" height="1" fill="#1e2831"/>
+
+  <g font-family="'Segoe UI', sans-serif" font-size="13">
+    <text x="284" y="662" fill="#e8eef2">Rohan Das</text>
+    <text x="560" y="662" fill="#7e919e">rohan@mediqueue.com</text>
+    <text x="880" y="662" font-family="'Courier New', Consolas, monospace" fill="#7e919e">2h ago</text>
+    <text x="284" y="694" fill="#e8eef2">Meera Pillai</text>
+    <text x="560" y="694" fill="#7e919e">meera@mediqueue.com</text>
+    <text x="880" y="694" font-family="'Courier New', Consolas, monospace" fill="#7e919e">5h ago</text>
+  </g>
+</svg>

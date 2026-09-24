@@ -1,7 +1,4 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
+name: build
 
 on:
   push:
@@ -11,13 +8,12 @@ on:
 
 jobs:
   build:
-
+    name: Install & build (Node ${{ matrix.node-version }})
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [18.x, 20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v4
@@ -25,7 +21,54 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+        cache: npm
+        cache-dependency-path: |
+          client/package-lock.json
+          server/package-lock.json
+    - name: Install and build client
+      working-directory: client
+      run: |
+        npm ci
+        npm run build
+    - name: Install server dependencies
+      working-directory: server
+      run: npm ci
+
+  e2e:
+    name: E2E smoke suite (67 checks)
+    runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo:7
+        ports:
+          - 27017:27017
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js 22.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22.x
+        cache: npm
+        cache-dependency-path: server/package-lock.json
+    - name: Install server dependencies
+      working-directory: server
+      run: npm ci
+    - name: Seed demo data
+      working-directory: server
+      env:
+        MONGODB_URI: mongodb://127.0.0.1:27017/mediqueue_ci
+        JWT_SECRET: ci-secret-not-for-production
+      run: npm run seed
+    - name: Start API and run e2e suite
+      working-directory: server
+      env:
+        PORT: 5100
+        MONGODB_URI: mongodb://127.0.0.1:27017/mediqueue_ci
+        JWT_SECRET: ci-secret-not-for-production
+        CLIENT_ORIGIN: http://localhost:5174
+      run: |
+        node src/server.js &
+        sleep 4
+        node e2e-test.js
