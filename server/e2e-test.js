@@ -38,6 +38,13 @@ const today = (offset = 0) => {
   return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
 };
 
+// The booking checks use a 10:30 slot. If it is already past 10:30 locally,
+// target tomorrow instead so the suite is time-of-day independent.
+const bookingDay = () => {
+  const mins = new Date().getHours() * 60 + new Date().getMinutes();
+  return mins < 10 * 60 + 30 ? today(0) : today(1);
+};
+
 async function main() {
   // 1. Auth
   const pa = await req('POST', '/auth/login', { body: { email: 'patient@mediqueue.com', password: 'Patient1234' } });
@@ -81,17 +88,18 @@ async function main() {
   check('sharma present', !!sharma);
   check('sharma has availability', sharma.availability.length === 7, `days=${sharma.availability.length}`);
 
-  const avail = await req('GET', `/doctors/${sharma.id}/availability?date=${today(0)}`, { token: patientToken });
-  check('availability today', avail.status === 200 && avail.json.slots.length > 0, `status=${avail.status}`);
+  // 4. Booking + conflict detection (booked on a day where 10:30 is still ahead)
+  const bookDate = bookingDay();
+  const avail = await req('GET', `/doctors/${sharma.id}/availability?date=${bookDate}`, { token: patientToken });
+  check('availability returned', avail.status === 200 && avail.json.slots.length > 0, `status=${avail.status}`);
 
-  // 4. Booking + conflict detection
   const slot = avail.json.slots.find((s) => s.available && s.start === '10:30');
-  check('10:30 slot free today', !!slot, JSON.stringify(avail.json.slots.slice(0, 4)));
+  check(`10:30 slot free on ${bookDate}`, !!slot, JSON.stringify(avail.json.slots.slice(0, 4)));
 
-  // Patient books 10:30 today with Sharma
+  // Patient books 10:30 with Sharma
   const b1 = await req('POST', '/appointments', {
     token: demoToken,
-    body: { doctorId: sharma.id, date: today(0), startTime: '10:30' },
+    body: { doctorId: sharma.id, date: bookDate, startTime: '10:30' },
   });
   check('book 10:30 succeeds', b1.status === 201, `status=${b1.status} msg=${b1.json.message}`);
   const newAppt = b1.json && b1.json.appointment;
@@ -99,21 +107,21 @@ async function main() {
   // Second patient attempts the SAME slot
   const b2 = await req('POST', '/appointments', {
     token: patientToken,
-    body: { doctorId: sharma.id, date: today(0), startTime: '10:30' },
+    body: { doctorId: sharma.id, date: bookDate, startTime: '10:30' },
   });
   check('duplicate booking rejected (SLOT_CONFLICT)', b2.status === 409 && b2.json.code === 'SLOT_CONFLICT', `status=${b2.status} code=${b2.json.code}`);
 
   // Overlapping slot (10:45 - 11:00) while 10:30-10:45 is taken
   const b3 = await req('POST', '/appointments', {
     token: demoToken,
-    body: { doctorId: sharma.id, date: today(0), startTime: '10:45' },
+    body: { doctorId: sharma.id, date: bookDate, startTime: '10:45' },
   });
   check('adjacent slot 10:45 is free', b3.status === 201, `status=${b3.status} msg=${b3.json.message}`);
 
   // Doctor unavailable on a conflicting out-of-schedule time
   const b4 = await req('POST', '/appointments', {
     token: demoToken,
-    body: { doctorId: sharma.id, date: today(0), startTime: '14:00' },
+    body: { doctorId: sharma.id, date: bookDate, startTime: '14:00' },
   });
   check('out-of-schedule time rejected', b4.status === 409, `status=${b4.status}`);
 
@@ -236,7 +244,9 @@ async function main() {
   // 11. Doctor dashboard
   const drToday = await req('GET', '/doctor/appointments/today', { token: doctorToken });
   check('doctor today', drToday.status === 200 && drToday.json.appointments.length >= 6, `status=${drToday.status}`);
-  check('doctor nowServing present', drToday.json.nowServing != null);
+  const kapoorToken = (await req('POST', '/auth/login', { body: { email: 'rajiv@mediqueue.com', password: 'Doctor1234' } })).json.token;
+  const kapoorToday = await req('GET', '/doctor/appointments/today', { token: kapoorToken });
+  check('doctor nowServing present', kapoorToday.status === 200 && kapoorToday.json.nowServing != null, `status=${kapoorToday.status}`);
 
   // patient detail for doctor history
   const others = await req('POST', '/auth/login', { body: { email: 'patient@mediqueue.com', password: 'Patient1234' } });
