@@ -18,7 +18,7 @@ async function req(method, path, { token, body } = {}) {
     body: body ? JSON.stringify(body) : undefined,
   });
   const json = await res.json().catch(() => ({}));
-  return { status: res.status, json };
+  return { status: res.status, json } 
 }
 
 function check(name, cond, extra = '') {
