@@ -8,7 +8,7 @@
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vite.dev)
 [![JWT](https://img.shields.io/badge/Auth-JWT-000000?logo=jsonwebtokens&logoColor=white)](https://jwt.io)
-[![Tests](https://img.shields.io/badge/tests-47%2F47%20passing-2ea44f)]()
+[![Tests](https://img.shields.io/badge/tests-67%2F67%20passing-2ea44f)]()
 
 ---
 
@@ -49,7 +49,7 @@ Every route is guarded **twice** — client-side role guards *and* server-side r
 | **Backend** | Node.js 22, Express 5, Mongoose, JWT (`jsonwebtoken`), `bcryptjs`, `express-validator` |
 | **Frontend** | React 18, Vite 5, `@tanstack/react-query`, `react-router-dom`, `axios`, `lucide-react` |
 | **Database** | MongoDB (local `localhost:27017`) |
-| **Tooling** | `nodemon`, seed script, 47-check end-to-end test suite |
+| **Tooling** | `nodemon`, seed script, 67-check end-to-end test suite |
 
 ---
 
@@ -66,7 +66,7 @@ MediQueue/
 │     ├─ routes/               # /api/auth /api/doctors /api/appointments /api/staff /api/doctor
 │     ├─ utils/                # time helpers, constants (status machine), ApiError
 │     ├─ seed/seed.js          # demo data generator
-│     └─ e2e-test.js           # end-to-end API verification (47 checks)
+│     └─ e2e-test.js           # end-to-end API verification (67 checks)
 ├─ client/                     # React + Vite SPA (port 5174)
 │  └─ src/
 │     ├─ context/              # Auth + Toast providers
@@ -174,8 +174,12 @@ SCHEDULED ──(staff check-in)──► WAITING ──(doctor)──► IN_CON
 
 ## 🛡️ Security
 
-- Passwords hashed with `bcryptjs`; JWTs signed with an env-provided secret.
+- Passwords hashed with `bcryptjs`; JWTs signed with an env-provided secret (the server refuses to start in production mode with the shipped default secret).
 - Role-based access control on every route + per-record ownership checks.
+- **Server-side session revocation** — signing out bump a per-user token version, immediately invalidating every previously issued JWT.
+- **Rate limiting** — a tight limiter on login/register (brute-force protection) and a global API limiter, both returning `429 RATE_LIMITED`.
+- **Client idle timeout** — sessions auto-sign-out after 10 minutes of inactivity.
+- Hardened HTTP headers via `helmet` (CSP, HSTS, `nosniff`, frame/framing policies).
 - Clinical notes/prescriptions are only returned to the treating doctor/staff.
 - Errors are normalized to `{ message, code }` — clients never see stack traces.
 
@@ -186,10 +190,10 @@ SCHEDULED ──(staff check-in)──► WAITING ──(doctor)──► IN_CON
 ```bash
 cd server
 node src/seed/seed.js   # reseed the demo database
-node e2e-test.js        # 47 checks: auth, RBAC, status machine, queues, conflicts…
+node e2e-test.js        # 67 checks: auth, RBAC, revocation, rate limits, status machine…
 ```
 
-Run the API first (`npm run dev` — port 5100); the e2e suite verifies `PASS 47 | FAIL 0`.
+Run the API first (`npm run dev` — port 5100); the e2e suite verifies `PASS 67 | FAIL 0`.
 
 ---
 
