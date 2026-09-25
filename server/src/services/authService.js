@@ -88,12 +88,13 @@ async function requestPasswordReset({ email, req }) {
         },
       }
     );
-    // Build the reset link from the request the user actually came in on, so
-    // it always matches the serving instance — even if CLIENT_ORIGIN holds a
-    // stale value (e.g. an old duplicate service URL). Falls back to the
-    // configured origin only when neither protocol nor host are available.
+    // In production, build the reset link from the request the user actually
+    // came in on, so it always matches the serving instance — even if
+    // CLIENT_ORIGIN holds a stale value (e.g. an old duplicate service URL).
+    // In development the API and the Vite client run on different ports, so
+    // the configured client origin is used there.
     let origin = config.clientOrigin.split(',')[0].trim();
-    if (req) {
+    if (config.env === 'production' && req) {
       const proto =
         req.protocol === 'https' || req.get('x-forwarded-proto') === 'https'
           ? 'https'
