@@ -16,14 +16,32 @@
   <a href="https://react.dev"><img src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white" alt="React"></a>
   <a href="https://vite.dev"><img src="https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white" alt="Vite"></a>
   <a href="https://jwt.io"><img src="https://img.shields.io/badge/Auth-JWT%20%2B%20bcrypt-000000?logo=jsonwebtokens&logoColor=white" alt="JWT + bcrypt"></a>
+  <a href="https://mediqueue-1cu4.onrender.com"><img src="https://img.shields.io/badge/Live%20Demo-Render-1BCBFB?logo=render&logoColor=white" alt="Live Demo"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-2ea44f" alt="License: MIT"></a>
 </p>
+
+## 🌐 Live Demo
+
+**Try it live:** [https://mediqueue-1cu4.onrender.com](https://mediqueue-1cu4.onrender.com)
+
+The deployed instance comes pre-seeded with demo data — log in and explore every role:
+
+| Role | Email | Password |
+| --- | --- | --- |
+| Admin | `admin@mediqueue.com` | `Admin1234` |
+| Front desk staff | `staff@mediqueue.com` | `Staff1234` |
+| Doctor | `ananya@mediqueue.com` | `Doctor1234` |
+| Doctor | `rajiv@mediqueue.com` | `Doctor1234` |
+| Patient | `patient@mediqueue.com` | `Patient1234` |
+
+> The app runs on a [Render](https://render.com) free instance, so the first visit may take ~30s to wake up.
 
 ---
 
 ## 📋 Table of Contents
 
 - [Why MediQueue?](#-why-mediqueue)
+- [Live Demo](#-live-demo)
 - [Highlights](#-highlights)
 - [Screens](#-screens)
 - [Architecture](#-architecture)
