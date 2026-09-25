@@ -11,11 +11,8 @@ const config = {
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '1d',
   clientOrigin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
   autoSeed: process.env.SEED_DEMO_DATA === 'true',
-  smtp: {
-    host: process.env.SMTP_HOST || '',
-    port: parseInt(process.env.SMTP_PORT, 10) || 587,
-    user: process.env.SMTP_USER || '',
-    pass: process.env.SMTP_PASS || '',
+  brevo: {
+    apiKey: process.env.BREVO_API_KEY || '',
     from: process.env.EMAIL_FROM || '',
   },
 };
