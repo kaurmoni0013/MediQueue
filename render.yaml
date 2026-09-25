@@ -16,7 +16,9 @@ services:
     region: oregon
     autoDeploy: true
     healthCheckPath: /api/health
-    buildCommand: cd ../client && npm ci && npm run build && cd ../server && npm ci
+    # npm skips devDependencies when NODE_ENV=production; vite lives in
+    # devDependencies, so the client install must include them explicitly.
+    buildCommand: cd ../client && npm ci --include=dev && npm run build && cd ../server && npm ci
     startCommand: node src/server.js
     envVars:
       - key: NODE_ENV
