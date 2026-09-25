@@ -4,6 +4,10 @@ const { connectDB } = require('./config/db');
 
 async function start() {
   await connectDB();
+  if (config.autoSeed) {
+    const { seedIfEmpty } = require('./seed/seed');
+    await seedIfEmpty();
+  }
   app.listen(config.port, () => {
     console.log(`[api] MediQueue server listening on http://localhost:${config.port}`);
   });

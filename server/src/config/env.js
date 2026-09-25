@@ -10,6 +10,7 @@ const config = {
   jwtSecret: process.env.JWT_SECRET || 'mediqueue-dev-secret-change-me',
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '1d',
   clientOrigin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+  autoSeed: process.env.SEED_DEMO_DATA === 'true',
 };
 
 // Never run a reachable deployment with the shipped default secret.

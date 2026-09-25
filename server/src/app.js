@@ -1,4 +1,6 @@
 const express = require('express');
+const path = require('path');
+const fs = require('fs');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -30,6 +32,21 @@ app.use('/api/appointments', appointmentRoutes);
 app.use('/api/staff', staffRoutes);
 app.use('/api/doctor', doctorWorkspaceRoutes);
 app.use('/api/admin', adminRoutes);
+
+// In production, serve the built React client and route non-API GETs to it
+// (SPA fallback). Keeps the whole app on a single origin, so the client's
+// default relative "/api" base URL works without extra configuration.
+if (config.env === 'production') {
+  const dist = path.resolve(__dirname, '../../client/dist');
+  if (fs.existsSync(path.join(dist, 'index.html'))) {
+    app.use(express.static(dist));
+    app.get(/^(?!\/api(?:\/|$)).*/, (_req, res) => {
+      res.sendFile(path.join(dist, 'index.html'));
+    });
+  } else {
+    console.warn('[api] client build not found — serving API only (production)');
+  }
+}
 
 app.use(notFound);
 app.use(errorHandler);

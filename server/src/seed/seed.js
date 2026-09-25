@@ -42,14 +42,16 @@ function addInitialHistory(appt, changedBy, when, note) {
   return history(appt._id, null, 'SCHEDULED', changedBy, note, when);
 }
 
-async function seed() {
-  console.log('[seed] clearing existing data...');
-  await Promise.all([
-    StatusHistory.deleteMany({}),
-    Appointment.deleteMany({}),
-    DoctorProfile.deleteMany({}),
-    User.deleteMany({}),
-  ]);
+async function seed({ clear = true } = {}) {
+  if (clear) {
+    console.log('[seed] clearing existing data...');
+    await Promise.all([
+      StatusHistory.deleteMany({}),
+      Appointment.deleteMany({}),
+      DoctorProfile.deleteMany({}),
+      User.deleteMany({}),
+    ]);
+  }
 
   /* ------------------------------ accounts ------------------------------ */
   const admin = await createUser('Moni Kaur', 'admin@mediqueue.com', 'Admin1234', 'ADMIN', { phone: '+91 98200 10000' });
@@ -263,7 +265,7 @@ async function seed() {
 async function run() {
   try {
     await mongoose.connect(config.mongoUri, { serverSelectionTimeoutMS: 5000 });
-    await seed();
+    await seed({ clear: true });
     console.log('[seed] done.');
   } catch (err) {
     console.error('[seed] failed:', err.message);
@@ -273,4 +275,28 @@ async function run() {
   }
 }
 
-run();
+// Idempotent first-boot seeding for fresh deployments (used by auto-seed on
+// Render). Seeds only when the database has no doctors yet, so it never wipes
+// or overwrites real data on subsequent boots. If the caller already holds an
+// open Mongoose connection, it is left untouched.
+async function seedIfEmpty() {
+  const wasConnected = mongoose.connection.readyState === 1;
+  if (!wasConnected) {
+    await mongoose.connect(config.mongoUri, { serverSelectionTimeoutMS: 5000 });
+  }
+  try {
+    const hasDoctors = (await DoctorProfile.estimatedDocumentCount()) > 0;
+    if (hasDoctors) {
+      console.log('[seed] demo data already present — skipping.');
+      return;
+    }
+    await seed({ clear: false });
+    console.log('[seed] demo data seeded.');
+  } finally {
+    if (!wasConnected) await mongoose.disconnect();
+  }
+}
+
+module.exports = { seed, seedIfEmpty };
+
+if (require.main === module) run();

@@ -1,0 +1,31 @@
+# Render blueprint — create this app from the Render dashboard:
+#   Dashboard → Blueprints → New Blueprint Instance → select this repo.
+#
+# After selecting the repo, fill in the two deferred env vars before applying:
+#   MONGODB_URI  — your MongoDB Atlas connection string (mongodb+srv://...)
+#   CLIENT_ORIGIN — the public URL of the app, e.g. https://mediqueue.onrender.com
+# JWT_SECRET is generated for you automatically (never stored in the repo).
+
+services:
+  - type: web
+    name: mediqueue
+    runtime: node
+    rootDir: server
+    branch: main
+    plan: free
+    region: oregon
+    autoDeploy: true
+    healthCheckPath: /api/health
+    buildCommand: cd ../client && npm ci && npm run build && cd ../server && npm ci
+    startCommand: node src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SEED_DEMO_DATA
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLIENT_ORIGIN
+        sync: false
+      - key: MONGODB_URI
+        sync: false
