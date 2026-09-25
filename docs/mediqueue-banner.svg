@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320">
   <defs>
     <pattern id="scan" width="40" height="40" patternUnits="userSpaceOnUse">
-      <circle cx="20" cy="20" r="1" fill="#13222f"/>
+      <circle cx="20" cy="20" r="1" fill="#dbe6f0"/>
     </pattern>
     <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#12181e"/>
-      <stop offset="1" stop-color="#0a0e12"/>
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f1f5f9"/>
     </linearGradient>
   </defs>
 
   <!-- background -->
-  <rect width="1280" height="320" fill="#0a0e12"/>
+  <rect width="1280" height="320" fill="#ffffff"/>
   <rect width="1280" height="320" fill="url(#scan)"/>
 
   <!-- subtle amber top rule + ticker -->
@@ -24,44 +24,44 @@
   <rect x="76" y="110" width="32" height="5" fill="#1a1203"/>
 
   <!-- title -->
-  <text x="140" y="130" font-family="'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="700" fill="#e8eef2">MediQueue</text>
-  <text x="141" y="166" font-family="'Courier New', Consolas, monospace" font-size="16" letter-spacing="6" fill="#f5a623">CLINIC OPERATIONS OS</text>
+  <text x="140" y="130" font-family="'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="700" fill="#0f172a">MediQueue</text>
+  <text x="141" y="166" font-family="'Courier New', Consolas, monospace" font-size="16" letter-spacing="6" fill="#b45309">CLINIC OPERATIONS OS</text>
 
   <!-- tagline -->
-  <text x="64" y="224" font-family="'Segoe UI', Roboto, sans-serif" font-size="18" fill="#7e919e">The front desk, digitised. Appointment booking, live patient queues,</text>
-  <text x="64" y="250" font-family="'Segoe UI', Roboto, sans-serif" font-size="18" fill="#7e919e">wait-time estimation and a full clinical audit trail — in one place.</text>
+  <text x="64" y="224" font-family="'Segoe UI', Roboto, sans-serif" font-size="18" fill="#64748b">The front desk, digitised. Appointment booking, live patient queues,</text>
+  <text x="64" y="250" font-family="'Segoe UI', Roboto, sans-serif" font-size="18" fill="#64748b">wait-time estimation and a full clinical audit trail — in one place.</text>
 
   <!-- right ticket mock -->
-  <rect x="816" y="64" width="400" height="176" fill="#12181e" stroke="#1e2831" rx="4"/>
-  <rect x="816" y="64" width="400" height="34" fill="#182027" rx="4"/>
+  <rect x="816" y="64" width="400" height="176" fill="#ffffff" stroke="#e2e8f0" rx="4"/>
+  <rect x="816" y="64" width="400" height="34" fill="#f8fafc" rx="4"/>
   <circle cx="842" cy="81" r="4" fill="#ff5c72"/>
   <circle cx="862" cy="81" r="4" fill="#f5a623"/>
   <circle cx="882" cy="81" r="4" fill="#38c984"/>
-  <text x="922" y="87" font-family="'Courier New', Consolas, monospace" font-size="12" letter-spacing="2" fill="#7e919e">LIVE / TICKET 0427</text>
+  <text x="922" y="87" font-family="'Courier New', Consolas, monospace" font-size="12" letter-spacing="2" fill="#94a3b8">LIVE / TICKET 0427</text>
   <circle cx="1024" cy="81" r="4" fill="#f5a623"/>
   <circle cx="1040" cy="81" r="4" fill="#f5a623"/>
 
   <!-- queue rows -->
   <g font-family="'Courier New', Consolas, monospace">
     <rect x="844" y="114" width="6" height="10" fill="#f5a623"/>
-    <text x="864" y="124" font-size="14" fill="#e8eef2">#1</text>
-    <text x="900" y="124" font-size="13" fill="#7e919e">Rahul Mehta</text>
-    <text x="1080" y="124" font-size="11" fill="#3ddc97">IN_CONSULT</text>
+    <text x="864" y="124" font-size="14" fill="#0f172a">#1</text>
+    <text x="900" y="124" font-size="13" fill="#64748b">Rahul Mehta</text>
+    <text x="1080" y="124" font-size="11" fill="#0d9465">IN_CONSULT</text>
 
-    <rect x="844" y="146" width="6" height="10" fill="#6fa9c9"/>
-    <text x="864" y="156" font-size="14" fill="#e8eef2">#2</text>
-    <text x="900" y="156" font-size="13" fill="#7e919e">Priya Singh</text>
-    <text x="1080" y="156" font-size="11" fill="#f5a623">WAITING</text>
+    <rect x="844" y="146" width="6" height="10" fill="#3d7ea6"/>
+    <text x="864" y="156" font-size="14" fill="#0f172a">#2</text>
+    <text x="900" y="156" font-size="13" fill="#64748b">Priya Singh</text>
+    <text x="1080" y="156" font-size="11" fill="#b45309">WAITING</text>
 
-    <rect x="844" y="178" width="6" height="10" fill="#38c984"/>
-    <text x="864" y="188" font-size="14" fill="#e8eef2">#3</text>
-    <text x="900" y="188" font-size="13" fill="#7e919e">Neha Gupta</text>
-    <text x="1080" y="188" font-size="11" fill="#6fa9c9">SCHEDULED</text>
+    <rect x="844" y="178" width="6" height="10" fill="#0d9465"/>
+    <text x="864" y="188" font-size="14" fill="#0f172a">#3</text>
+    <text x="900" y="188" font-size="13" fill="#64748b">Neha Gupta</text>
+    <text x="1080" y="188" font-size="11" fill="#3d7ea6">SCHEDULED</text>
   </g>
 
-  <rect x="844" y="212" width="344" height="2" stroke="#1e2831" stroke-dasharray="6 6" fill="none"/>
-  <text x="844" y="232" font-family="'Courier New', Consolas, monospace" font-size="12" fill="#51626d">EST. NEXT CALL  ~15 MIN  ·  DR ANANYA SHARMA</text>
+  <rect x="844" y="212" width="344" height="2" stroke="#d7dfe8" stroke-dasharray="6 6" fill="none"/>
+  <text x="844" y="232" font-family="'Courier New', Consolas, monospace" font-size="12" fill="#64748b">EST. NEXT CALL  ~15 MIN  ·  DR ANANYA SHARMA</text>
 
   <circle cx="64" cy="286" r="3" fill="#f5a623"/>
-  <text x="78" y="291" font-family="'Courier New', Consolas, monospace" font-size="13" fill="#51626d">NODE 18+  /  EXPRESS  /  MONGODB  /  REACT  /  VITE</text>
+  <text x="78" y="291" font-family="'Courier New', Consolas, monospace" font-size="13" fill="#94a3b8">NODE 18+  /  EXPRESS  /  MONGODB  /  REACT  /  VITE</text>
 </svg>

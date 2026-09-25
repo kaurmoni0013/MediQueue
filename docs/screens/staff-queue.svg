@@ -1,154 +1,154 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#0d1319"/>
-      <stop offset="1" stop-color="#0a0e12"/>
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f1f5f9"/>
     </linearGradient>
   </defs>
 
-  <rect width="1280" height="64" fill="#10161c"/>
+  <rect width="1280" height="64" fill="#f1f5f9"/>
   <circle cx="28" cy="32" r="6" fill="#ff5c72"/>
   <circle cx="50" cy="32" r="6" fill="#f5a623"/>
   <circle cx="72" cy="32" r="6" fill="#38c984"/>
-  <rect x="120" y="18" width="900" height="28" rx="4" fill="#182027"/>
-  <text x="135" y="37" font-family="'Courier New', Consolas, monospace" font-size="13" fill="#7e919e">app.mediqueue.local/staff/queue</text>
+  <rect x="120" y="18" width="900" height="28" rx="4" fill="#ffffff" stroke="#dfe6ee"/>
+  <text x="135" y="37" font-family="'Courier New', Consolas, monospace" font-size="13" fill="#94a3b8">app.mediqueue.local/staff/queue</text>
 
   <rect y="64" width="1280" height="696" fill="url(#bg)"/>
 
   <!-- sidebar -->
-  <rect x="0" y="64" width="238" height="696" fill="#0d1319" stroke="#1e2831"/>
+  <rect x="0" y="64" width="238" height="696" fill="#ffffff" stroke="#e2e8f0"/>
   <rect x="16" y="84" width="30" height="30" fill="#f5a623" rx="3"/>
   <rect x="27" y="95" width="8" height="8" fill="#1a1203"/>
-  <text x="58" y="99" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="700" fill="#e8eef2">MediQueue</text>
-  <text x="58" y="115" font-family="'Courier New', Consolas, monospace" font-size="10" letter-spacing="1" fill="#51626d">CLINIC OPERATIONS</text>
+  <text x="58" y="99" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="700" fill="#0f172a">MediQueue</text>
+  <text x="58" y="115" font-family="'Courier New', Consolas, monospace" font-size="10" letter-spacing="1" fill="#94a3b8">CLINIC OPERATIONS</text>
 
-  <text x="16" y="152" font-family="'Courier New', Consolas, monospace" font-size="10" letter-spacing="2" fill="#51626d">CLINIC STAFF</text>
+  <text x="16" y="152" font-family="'Courier New', Consolas, monospace" font-size="10" letter-spacing="2" fill="#94a3b8">CLINIC STAFF</text>
 
   <g font-family="'Segoe UI', sans-serif" font-size="14">
-    <rect x="18" y="164" width="5" height="5" fill="#51626d"/>
-    <text x="32" y="175" fill="#abbcca">Dashboard</text>
+    <rect x="18" y="164" width="5" height="5" fill="#cbd5e1"/>
+    <text x="32" y="175" fill="#64748b">Dashboard</text>
     <rect x="8" y="192" width="222" height="36" rx="4" fill="rgba(245,166,35,0.12)"/>
     <rect x="8" y="192" width="3" height="36" fill="#f5a623"/>
     <rect x="18" y="204" width="5" height="5" fill="#f5a623"/>
-    <text x="32" y="215" fill="#e8eef2" font-weight="600">Today's Queue</text>
-    <rect x="18" y="244" width="5" height="5" fill="#51626d"/>
-    <text x="32" y="255" fill="#abbcca">Appointments</text>
-    <rect x="18" y="284" width="5" height="5" fill="#51626d"/>
-    <text x="32" y="295" fill="#abbcca">Doctors</text>
-    <rect x="18" y="324" width="5" height="5" fill="#51626d"/>
-    <text x="32" y="335" fill="#abbcca">Patients</text>
-    <rect x="18" y="364" width="5" height="5" fill="#51626d"/>
-    <text x="32" y="375" fill="#abbcca">Reports</text>
+    <text x="32" y="215" fill="#0f172a" font-weight="600">Today's Queue</text>
+    <rect x="18" y="244" width="5" height="5" fill="#cbd5e1"/>
+    <text x="32" y="255" fill="#64748b">Appointments</text>
+    <rect x="18" y="284" width="5" height="5" fill="#cbd5e1"/>
+    <text x="32" y="295" fill="#64748b">Doctors</text>
+    <rect x="18" y="324" width="5" height="5" fill="#cbd5e1"/>
+    <text x="32" y="335" fill="#64748b">Patients</text>
+    <rect x="18" y="364" width="5" height="5" fill="#cbd5e1"/>
+    <text x="32" y="375" fill="#64748b">Reports</text>
   </g>
 
-  <rect x="12" y="686" width="214" height="54" rx="4" fill="#12181e" stroke="#1e2831"/>
-  <circle cx="40" cy="713" r="16" fill="#182027"/>
-  <text x="34" y="718" font-family="'Segoe UI', sans-serif" font-size="12" fill="#f5a623">AR</text>
-  <text x="64" y="712" font-family="'Segoe UI', sans-serif" font-size="13" fill="#e8eef2">Ashwin Rao</text>
-  <text x="64" y="728" font-family="'Segoe UI', sans-serif" font-size="11" fill="#7e919e">Staff</text>
+  <rect x="12" y="686" width="214" height="54" rx="4" fill="#ffffff" stroke="#e2e8f0"/>
+  <circle cx="40" cy="713" r="16" fill="#eef2f7"/>
+  <text x="34" y="718" font-family="'Segoe UI', sans-serif" font-size="12" fill="#b45309">AR</text>
+  <text x="64" y="712" font-family="'Segoe UI', sans-serif" font-size="13" fill="#0f172a">Ashwin Rao</text>
+  <text x="64" y="728" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">Staff</text>
 
   <!-- main -->
-  <text x="266" y="116" font-family="'Segoe UI', sans-serif" font-size="12" fill="#51626d">Thursday, 24 September 2026</text>
-  <text x="266" y="152" font-family="'Segoe UI', sans-serif" font-size="26" font-weight="700" fill="#e8eef2">Today's queue</text>
-  <text x="266" y="176" font-family="'Segoe UI', sans-serif" font-size="14" fill="#7e919e">Live queue per doctor. Check patients in as they arrive.</text>
+  <text x="266" y="116" font-family="'Segoe UI', sans-serif" font-size="12" fill="#94a3b8">Thursday, 24 September 2026</text>
+  <text x="266" y="152" font-family="'Segoe UI', sans-serif" font-size="26" font-weight="700" fill="#0f172a">Today's queue</text>
+  <text x="266" y="176" font-family="'Segoe UI', sans-serif" font-size="14" fill="#64748b">Live queue per doctor. Check patients in as they arrive.</text>
 
   <!-- doctor toggle tabs -->
   <g font-family="'Segoe UI', sans-serif" font-size="13">
-    <rect x="266" y="196" width="180" height="36" rx="4" fill="#12181e" stroke="rgba(245,166,35,0.5)"/>
-    <text x="286" y="218" fill="#f5a623" font-weight="600">All doctors</text>
-    <rect x="452" y="196" width="150" height="36" rx="4" fill="#12181e" stroke="#1e2831"/>
-    <text x="472" y="218" fill="#abbcca">Dr. Ananya</text>
-    <rect x="608" y="196" width="150" height="36" rx="4" fill="#12181e" stroke="#1e2831"/>
-    <text x="628" y="218" fill="#abbcca">Dr. Rajiv</text>
+    <rect x="266" y="196" width="180" height="36" rx="4" fill="#ffffff" stroke="rgba(245,166,35,0.5)"/>
+    <text x="286" y="218" fill="#b45309" font-weight="600">All doctors</text>
+    <rect x="452" y="196" width="150" height="36" rx="4" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="472" y="218" fill="#64748b">Dr. Ananya</text>
+    <rect x="608" y="196" width="150" height="36" rx="4" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="628" y="218" fill="#64748b">Dr. Rajiv</text>
   </g>
 
   <!-- per-doctor queue -->
-  <text x="266" y="262" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" fill="#e8eef2">Dr. Ananya Sharma · General Medicine</text>
-  <rect x="266" y="274" width="932" height="150" rx="4" fill="#12181e" stroke="#1e2831"/>
+  <text x="266" y="262" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" fill="#0f172a">Dr. Ananya Sharma · General Medicine</text>
+  <rect x="266" y="274" width="932" height="150" rx="4" fill="#ffffff" stroke="#e2e8f0"/>
 
   <g font-family="'Courier New', Consolas, monospace" font-size="12">
-    <text x="284" y="304" fill="#51626d">POSITION</text>
-    <text x="390" y="304" fill="#51626d">TIME</text>
-    <text x="500" y="304" fill="#51626d">PATIENT</text>
-    <text x="740" y="304" fill="#51626d">EST. WAIT</text>
-    <text x="880" y="304" fill="#51626d">STATUS</text>
+    <text x="284" y="304" fill="#94a3b8">POSITION</text>
+    <text x="390" y="304" fill="#94a3b8">TIME</text>
+    <text x="500" y="304" fill="#94a3b8">PATIENT</text>
+    <text x="740" y="304" fill="#94a3b8">EST. WAIT</text>
+    <text x="880" y="304" fill="#94a3b8">STATUS</text>
   </g>
-  <rect x="266" y="312" width="932" height="1" fill="#1e2831"/>
+  <rect x="266" y="312" width="932" height="1" fill="#eef2f6"/>
 
   <g font-family="'Segoe UI', sans-serif" font-size="13">
     <rect x="278" y="326" width="80" height="22" rx="4" fill="rgba(245,166,35,0.15)" stroke="rgba(245,166,35,0.5)"/>
-    <text x="292" y="341" font-family="'Courier New', Consolas, monospace" font-size="12" fill="#f5a623">#4</text>
-    <text x="390" y="341" font-family="'Courier New', Consolas, monospace" fill="#e8eef2">10:15 AM</text>
-    <text x="500" y="341" fill="#e8eef2">Kavita Iyer</text>
-    <text x="500" y="357" font-size="11" fill="#51626d">Lower back pain after lifting weights</text>
-    <text x="740" y="341" font-family="'Courier New', Consolas, monospace" fill="#e8eef2">~15 min</text>
-    <rect x="874" y="328" width="112" height="22" rx="4" fill="rgba(61,220,151,0.15)" stroke="rgba(61,220,151,0.4)"/>
-    <text x="892" y="342" font-size="11" fill="#3ddc97">WAITING</text>
+    <text x="292" y="341" font-family="'Courier New', Consolas, monospace" font-size="12" fill="#b45309">#4</text>
+    <text x="390" y="341" font-family="'Courier New', Consolas, monospace" fill="#0f172a">10:15 AM</text>
+    <text x="500" y="341" fill="#0f172a">Kavita Iyer</text>
+    <text x="500" y="357" font-size="11" fill="#64748b">Lower back pain after lifting weights</text>
+    <text x="740" y="341" font-family="'Courier New', Consolas, monospace" fill="#0f172a">~15 min</text>
+    <rect x="874" y="328" width="112" height="22" rx="4" fill="rgba(13,148,101,0.14)" stroke="rgba(13,148,101,0.4)"/>
+    <text x="892" y="342" font-size="11" fill="#0d9465">WAITING</text>
     <rect x="1042" y="326" width="140" height="26" rx="4" fill="#f5a623"/>
     <text x="1056" y="343" font-size="12" font-weight="700" fill="#1a1203">Check in</text>
   </g>
-  <rect x="266" y="366" width="932" height="1" fill="#131a20"/>
+  <rect x="266" y="366" width="932" height="1" fill="#eef2f6"/>
 
   <g font-family="'Segoe UI', sans-serif" font-size="13">
-    <rect x="278" y="380" width="80" height="22" rx="4" fill="rgba(61,220,151,0.15)" stroke="rgba(61,220,151,0.4)"/>
-    <text x="292" y="395" font-family="'Courier New', Consolas, monospace" font-size="12" fill="#3ddc97">#3</text>
-    <text x="390" y="395" font-family="'Courier New', Consolas, monospace" fill="#e8eef2">10:00 AM</text>
-    <text x="500" y="395" fill="#e8eef2">Neha Gupta</text>
-    <text x="500" y="411" font-size="11" fill="#51626d">Persistent cough for 2 weeks</text>
-    <text x="740" y="395" font-family="'Courier New', Consolas, monospace" fill="#e8eef2">~15 min</text>
-    <rect x="874" y="382" width="112" height="22" rx="4" fill="rgba(61,220,151,0.15)" stroke="rgba(61,220,151,0.4)"/>
-    <text x="892" y="396" font-size="11" fill="#3ddc97">WAITING</text>
+    <rect x="278" y="380" width="80" height="22" rx="4" fill="rgba(13,148,101,0.14)" stroke="rgba(13,148,101,0.4)"/>
+    <text x="292" y="395" font-family="'Courier New', Consolas, monospace" font-size="12" fill="#0d9465">#3</text>
+    <text x="390" y="395" font-family="'Courier New', Consolas, monospace" fill="#0f172a">10:00 AM</text>
+    <text x="500" y="395" fill="#0f172a">Neha Gupta</text>
+    <text x="500" y="411" font-size="11" fill="#64748b">Persistent cough for 2 weeks</text>
+    <text x="740" y="395" font-family="'Courier New', Consolas, monospace" fill="#0f172a">~15 min</text>
+    <rect x="874" y="382" width="112" height="22" rx="4" fill="rgba(13,148,101,0.14)" stroke="rgba(13,148,101,0.4)"/>
+    <text x="892" y="396" font-size="11" fill="#0d9465">WAITING</text>
     <rect x="1042" y="380" width="140" height="26" rx="4" fill="#f5a623"/>
     <text x="1056" y="397" font-size="12" font-weight="700" fill="#1a1203">Check in</text>
   </g>
-  <rect x="266" y="420" width="932" height="1" fill="#131a20"/>
+  <rect x="266" y="420" width="932" height="1" fill="#eef2f6"/>
 
   <g font-family="'Segoe UI', sans-serif" font-size="13">
-    <rect x="278" y="434" width="80" height="22" rx="4" fill="rgba(90,143,176,0.14)" stroke="rgba(111,169,201,0.35)"/>
-    <text x="292" y="449" font-family="'Courier New', Consolas, monospace" font-size="12" fill="#6fa9c9">#2</text>
-    <text x="390" y="449" font-family="'Courier New', Consolas, monospace" fill="#e8eef2">11:15 AM</text>
-    <text x="500" y="449" fill="#e8eef2">Arjun Nair</text>
-    <text x="500" y="465" font-size="11" fill="#51626d">Annual health check-up</text>
-    <text x="740" y="449" font-family="'Courier New', Consolas, monospace" fill="#e8eef2">~30 min</text>
-    <rect x="874" y="436" width="120" height="22" rx="4" fill="rgba(90,143,176,0.14)" stroke="rgba(111,169,201,0.35)"/>
-    <text x="892" y="450" font-size="11" fill="#6fa9c9">SCHEDULED</text>
+    <rect x="278" y="434" width="80" height="22" rx="4" fill="rgba(61,126,166,0.14)" stroke="rgba(61,126,166,0.35)"/>
+    <text x="292" y="449" font-family="'Courier New', Consolas, monospace" font-size="12" fill="#3d7ea6">#2</text>
+    <text x="390" y="449" font-family="'Courier New', Consolas, monospace" fill="#0f172a">11:15 AM</text>
+    <text x="500" y="449" fill="#0f172a">Arjun Nair</text>
+    <text x="500" y="465" font-size="11" fill="#64748b">Annual health check-up</text>
+    <text x="740" y="449" font-family="'Courier New', Consolas, monospace" fill="#0f172a">~30 min</text>
+    <rect x="874" y="436" width="120" height="22" rx="4" fill="rgba(61,126,166,0.14)" stroke="rgba(61,126,166,0.35)"/>
+    <text x="892" y="450" font-size="11" fill="#3d7ea6">SCHEDULED</text>
   </g>
 
   <!-- doctor 2 -->
-  <text x="266" y="514" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" fill="#e8eef2">Dr. Rajiv Kapoor · Pediatrics</text>
-  <rect x="266" y="526" width="932" height="150" rx="4" fill="#12181e" stroke="#1e2831"/>
+  <text x="266" y="514" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" fill="#0f172a">Dr. Rajiv Kapoor · Pediatrics</text>
+  <rect x="266" y="526" width="932" height="150" rx="4" fill="#ffffff" stroke="#e2e8f0"/>
 
   <g font-family="'Courier New', Consolas, monospace" font-size="12">
-    <text x="284" y="556" fill="#51626d">POSITION</text>
-    <text x="390" y="556" fill="#51626d">TIME</text>
-    <text x="500" y="556" fill="#51626d">PATIENT</text>
-    <text x="740" y="556" fill="#51626d">EST. WAIT</text>
-    <text x="880" y="556" fill="#51626d">STATUS</text>
+    <text x="284" y="556" fill="#94a3b8">POSITION</text>
+    <text x="390" y="556" fill="#94a3b8">TIME</text>
+    <text x="500" y="556" fill="#94a3b8">PATIENT</text>
+    <text x="740" y="556" fill="#94a3b8">EST. WAIT</text>
+    <text x="880" y="556" fill="#94a3b8">STATUS</text>
   </g>
-  <rect x="266" y="564" width="932" height="1" fill="#1e2831"/>
+  <rect x="266" y="564" width="932" height="1" fill="#eef2f6"/>
 
   <g font-family="'Segoe UI', sans-serif" font-size="13">
-    <rect x="278" y="578" width="96" height="22" rx="4" fill="rgba(61,220,151,0.15)" stroke="rgba(61,220,151,0.5)"/>
-    <text x="292" y="593" font-family="'Courier New', Consolas, monospace" font-size="12" fill="#3ddc97">#1</text>
-    <text x="390" y="593" font-family="'Courier New', Consolas, monospace" fill="#e8eef2">10:00 AM</text>
-    <text x="500" y="593" fill="#e8eef2">Aman Verma</text>
-    <text x="500" y="609" font-size="11" fill="#51626d">Recurring stomach pain after meals</text>
-    <text x="740" y="593" font-family="'Courier New', Consolas, monospace" fill="#e8eef2">Now</text>
-    <rect x="874" y="580" width="120" height="22" rx="4" fill="rgba(61,220,151,0.15)" stroke="rgba(61,220,151,0.4)"/>
-    <text x="892" y="594" font-size="11" fill="#3ddc97">IN_CONSULT</text>
+    <rect x="278" y="578" width="96" height="22" rx="4" fill="rgba(13,148,101,0.14)" stroke="rgba(13,148,101,0.5)"/>
+    <text x="292" y="593" font-family="'Courier New', Consolas, monospace" font-size="12" fill="#0d9465">#1</text>
+    <text x="390" y="593" font-family="'Courier New', Consolas, monospace" fill="#0f172a">10:00 AM</text>
+    <text x="500" y="593" fill="#0f172a">Aman Verma</text>
+    <text x="500" y="609" font-size="11" fill="#64748b">Recurring stomach pain after meals</text>
+    <text x="740" y="593" font-family="'Courier New', Consolas, monospace" fill="#0f172a">Now</text>
+    <rect x="874" y="580" width="120" height="22" rx="4" fill="rgba(13,148,101,0.14)" stroke="rgba(13,148,101,0.4)"/>
+    <text x="892" y="594" font-size="11" fill="#0d9465">IN_CONSULT</text>
     <rect x="1042" y="578" width="140" height="26" rx="4" fill="rgba(245,166,35,0.15)" stroke="rgba(245,166,35,0.4)"/>
-    <text x="1054" y="595" font-size="12" fill="#f5a623">Reschedule</text>
+    <text x="1054" y="595" font-size="12" fill="#b45309">Reschedule</text>
   </g>
 
   <g font-family="'Segoe UI', sans-serif" font-size="13">
     <rect x="278" y="632" width="88" height="22" rx="4" fill="rgba(245,166,35,0.15)" stroke="rgba(245,166,35,0.5)"/>
-    <text x="292" y="647" font-family="'Courier New', Consolas, monospace" font-size="12" fill="#f5a623">#2</text>
-    <text x="390" y="647" font-family="'Courier New', Consolas, monospace" fill="#e8eef2">10:30 AM</text>
-    <text x="500" y="647" fill="#e8eef2">Vikram Joshi</text>
-    <text x="500" y="663" font-size="11" fill="#51626d">Child with fever since yesterday</text>
-    <text x="740" y="647" font-family="'Courier New', Consolas, monospace" fill="#e8eef2">~15 min</text>
-    <rect x="874" y="634" width="112" height="22" rx="4" fill="rgba(61,220,151,0.15)" stroke="rgba(61,220,151,0.4)"/>
-    <text x="892" y="648" font-size="11" fill="#3ddc97">WAITING</text>
+    <text x="292" y="647" font-family="'Courier New', Consolas, monospace" font-size="12" fill="#b45309">#2</text>
+    <text x="390" y="647" font-family="'Courier New', Consolas, monospace" fill="#0f172a">10:30 AM</text>
+    <text x="500" y="647" fill="#0f172a">Vikram Joshi</text>
+    <text x="500" y="663" font-size="11" fill="#64748b">Child with fever since yesterday</text>
+    <text x="740" y="647" font-family="'Courier New', Consolas, monospace" fill="#0f172a">~15 min</text>
+    <rect x="874" y="634" width="112" height="22" rx="4" fill="rgba(13,148,101,0.14)" stroke="rgba(13,148,101,0.4)"/>
+    <text x="892" y="648" font-size="11" fill="#0d9465">WAITING</text>
     <rect x="1042" y="632" width="140" height="26" rx="4" fill="#f5a623"/>
     <text x="1056" y="649" font-size="12" font-weight="700" fill="#1a1203">Check in</text>
   </g>
