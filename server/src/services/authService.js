@@ -74,7 +74,7 @@ async function logout(userId) {
  * Always reports success — even for unknown email addresses — so callers
  * cannot probe which emails have accounts.
  */
-async function requestPasswordReset({ email }) {
+async function requestPasswordReset({ email, req }) {
   const normalized = String(email || '').trim().toLowerCase();
   const user = await User.findOne({ email: normalized });
   if (user && user.isActive) {
@@ -88,7 +88,19 @@ async function requestPasswordReset({ email }) {
         },
       }
     );
-    const origin = config.clientOrigin.split(',')[0].trim();
+    // Build the reset link from the request the user actually came in on, so
+    // it always matches the serving instance — even if CLIENT_ORIGIN holds a
+    // stale value (e.g. an old duplicate service URL). Falls back to the
+    // configured origin only when neither protocol nor host are available.
+    let origin = config.clientOrigin.split(',')[0].trim();
+    if (req) {
+      const proto =
+        req.protocol === 'https' || req.get('x-forwarded-proto') === 'https'
+          ? 'https'
+          : 'http';
+      const host = req.get('host');
+      if (proto && host) origin = `${proto}://${host}`;
+    }
     const resetUrl = `${origin}/reset-password?token=${token}`;
     await sendPasswordResetEmail({ email: normalized, resetUrl });
   }

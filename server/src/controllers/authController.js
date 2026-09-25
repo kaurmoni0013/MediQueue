@@ -22,7 +22,7 @@ const logout = asyncHandler(async (req, res) => {
 });
 
 const forgotPassword = asyncHandler(async (req, res) => {
-  const result = await authService.requestPasswordReset(req.body);
+  const result = await authService.requestPasswordReset({ ...req.body, req });
   res.json({ success: true, ...result });
 });
 
