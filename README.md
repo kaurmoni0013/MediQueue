@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/mediqueue-banner.svg" alt="MediQueue — Clinic Appointment & Queue Management System" width="100%">
+  <img src="docs/mediqueue-banner.svg?raw=1&v=2" alt="MediQueue — Clinic Appointment & Queue Management System" width="100%">
 </p>
 
 <p align="center">
@@ -102,15 +102,15 @@ per-record ownership checks. The UI is the convenience; the API is the authority
 
 | Patient portal — live queue & next appointment | Booking wizard — doctor → date → live slots |
 | --- | --- |
-| <img src="docs/screens/patient-dashboard.svg" alt="Patient dashboard" width="520"> | <img src="docs/screens/booking-wizard.svg" alt="Booking wizard" width="520"> |
+| <img src="docs/screens/patient-dashboard.svg?raw=1&v=2" alt="Patient dashboard" width="520"> | <img src="docs/screens/booking-wizard.svg?raw=1&v=2" alt="Booking wizard" width="520"> |
 
 | Staff terminal — today's queues across doctors | Doctor console — who is waiting next |
 | --- | --- |
-| <img src="docs/screens/staff-queue.svg" alt="Staff queue board" width="520"> | <img src="docs/screens/doctor-queue.svg" alt="Doctor queue" width="520"> |
+| <img src="docs/screens/staff-queue.svg?raw=1&v=2" alt="Staff queue board" width="520"> | <img src="docs/screens/doctor-queue.svg?raw=1&v=2" alt="Doctor queue" width="520"> |
 
 | Admin console — clinic-wide operating picture |
 | --- |
-| <img src="docs/screens/admin-console.svg" alt="Admin console" width="520"> |
+| <img src="docs/screens/admin-console.svg?raw=1&v=2" alt="Admin console" width="520"> |
 
 ---
 
