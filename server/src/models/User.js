@@ -19,6 +19,8 @@ const userSchema = new mongoose.Schema(
     gender: { type: String, enum: ['', 'male', 'female', 'other'], default: '' },
     isActive: { type: Boolean, default: true },
     tokenVersion: { type: Number, default: 0 },
+    passwordResetToken: { type: String, default: null, select: false }, // sha256 of the emailed reset token
+    passwordResetExpires: { type: Date, default: null, select: false },
   },
   { timestamps: true }
 );

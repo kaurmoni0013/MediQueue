@@ -6,6 +6,8 @@ const { requireAuth } = require('../middleware/auth');
 
 router.post('/register', validate(validators.registerRules), controller.register);
 router.post('/login', validate(validators.loginRules), controller.login);
+router.post('/forgot-password', validate(validators.forgotPasswordRules), controller.forgotPassword);
+router.post('/reset-password', validate(validators.resetPasswordRules), controller.resetPassword);
 router.get('/me', requireAuth, controller.me);
 router.post('/logout', requireAuth, controller.logout);
 

@@ -95,6 +95,9 @@ export default function LoginPage() {
               {busy ? <Loader2 size={15} className="spin" style={{ animation: 'spin 0.8s linear infinite' }} /> : <LogIn size={15} />}
               Sign in
             </button>
+            <p className="small mt-2" style={{ textAlign: 'right' }}>
+              <Link to="/forgot-password">Forgot password?</Link>
+            </p>
           </form>
 
           <div className="mt-3">

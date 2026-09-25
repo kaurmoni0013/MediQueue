@@ -31,3 +31,15 @@ services:
         sync: false
       - key: MONGODB_URI
         sync: false
+      # Optional: SMTP credentials for password-reset emails. Leave unset and the
+      # reset link is printed to the server logs instead (demo mode).
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: EMAIL_FROM
+        sync: false

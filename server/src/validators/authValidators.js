@@ -21,4 +21,11 @@ const loginRules = [
   body('password').isString().withMessage('Password is required'),
 ];
 
-module.exports = { registerRules, loginRules };
+const forgotPasswordRules = [body('email').isEmail().withMessage('Enter a valid email address').normalizeEmail()];
+
+const resetPasswordRules = [
+  body('token').isString().isLength({ min: 16, max: 256 }).withMessage('Reset token is missing or malformed'),
+  passwordRule,
+];
+
+module.exports = { registerRules, loginRules, forgotPasswordRules, resetPasswordRules };
