@@ -118,17 +118,30 @@ per-record ownership checks. The UI is the convenience; the API is the authority
 > These are pixel-accurate previews of the interface, illustrated with the app's own design tokens.
 > Real browser capture can be dropped into `docs/screenshots/` and referenced the same way.
 
-| Patient portal — live queue & next appointment | Booking wizard — doctor → date → live slots |
-| --- | --- |
-| <img src="docs/screens/patient-dashboard.svg?raw=1&v=2" alt="Patient dashboard" width="520"> | <img src="docs/screens/booking-wizard.svg?raw=1&v=2" alt="Booking wizard" width="520"> |
+<p align="center">
+  <strong>Patient portal — live queue & next appointment</strong><br>
+  <img src="docs/screens/patient-dashboard.svg?raw=1&v=2" alt="Patient dashboard" width="100%">
+</p>
 
-| Staff terminal — today's queues across doctors | Doctor console — who is waiting next |
-| --- | --- |
-| <img src="docs/screens/staff-queue.svg?raw=1&v=2" alt="Staff queue board" width="520"> | <img src="docs/screens/doctor-queue.svg?raw=1&v=2" alt="Doctor queue" width="520"> |
+<p align="center">
+  <strong>Booking wizard — doctor → date → live slots</strong><br>
+  <img src="docs/screens/booking-wizard.svg?raw=1&v=2" alt="Booking wizard" width="100%">
+</p>
 
-| Admin console — clinic-wide operating picture |
-| --- |
-| <img src="docs/screens/admin-console.svg?raw=1&v=2" alt="Admin console" width="520"> |
+<p align="center">
+  <strong>Staff terminal — today's queues across doctors</strong><br>
+  <img src="docs/screens/staff-queue.svg?raw=1&v=2" alt="Staff queue board" width="100%">
+</p>
+
+<p align="center">
+  <strong>Doctor console — who is waiting next</strong><br>
+  <img src="docs/screens/doctor-queue.svg?raw=1&v=2" alt="Doctor queue" width="100%">
+</p>
+
+<p align="center">
+  <strong>Admin console — clinic-wide operating picture</strong><br>
+  <img src="docs/screens/admin-console.svg?raw=1&v=2" alt="Admin console" width="100%">
+</p>
 
 ---
 
