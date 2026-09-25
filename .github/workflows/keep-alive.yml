@@ -9,5 +9,7 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Render health endpoint
-        run: curl -fsS --max-time 30 https://mediqueue-1cu4.onrender.com/api/health
+      - name: Ping Render health endpoints
+        run: |
+          curl -fsS --max-time 25 https://mediqueue-1cu4.onrender.com/api/health || true
+          curl -fsS --max-time 25 https://mediqueue-hi0e.onrender.com/api/health || true
