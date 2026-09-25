@@ -14,6 +14,7 @@ import EmptyState from '../../components/EmptyState';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import AppointmentDetail from '../../components/AppointmentDetail';
 import RescheduleDialog from '../../components/RescheduleDialog';
+import { useIsMobile } from '../../hooks/useMedia';
 
 const ACTIVE = ['SCHEDULED', 'WAITING', 'IN_CONSULT'];
 
@@ -119,10 +120,50 @@ export default function StaffQueuePage() {
 }
 
 function QueueGroup({ title, rows, onView, checkIn, setRescheduling, setToCancel, highlight }) {
+  const isMobile = useIsMobile();
+
   return (
     <section>
       <h2 className="mb-2">{title}</h2>
-      <div className="card" style={{ overflow: 'hidden', borderColor: highlight ? 'var(--primary)' : undefined }}>
+      {isMobile ? (
+        <div className="m-list">
+          {rows.map((a) => (
+            <div key={a.id} className={`card card-pad m-card ${highlight ? 'm-card-hl' : ''}`}>
+              <div className="m-card-top">
+                <span className="m-pos">{a.queuePosition ? `#${a.queuePosition}` : '—'}</span>
+                <span className="m-card-when num">{to12(a.startTime)}</span>
+                <StatusBadge status={a.status} />
+              </div>
+              <div className="m-card-name">{a.patient?.name}</div>
+              <div className="m-card-sub">{a.patient?.phone || ''}</div>
+              <div className="m-card-sub">
+                Est. wait · <span className="num">{waitLabel(a.estimatedWait)}</span>
+              </div>
+              <div className="m-card-actions">
+                {a.status === 'SCHEDULED' ? (
+                  <Button variant="primary" size="sm" onClick={() => checkIn.mutate(a.id)} disabled={checkIn.isPending}>
+                    <Play size={12} /> Check in
+                  </Button>
+                ) : null}
+                {['SCHEDULED', 'WAITING'].includes(a.status) ? (
+                  <>
+                    <Button variant="secondary" size="sm" onClick={() => setRescheduling(a)}>
+                      Change
+                    </Button>
+                    <Button variant="danger" size="sm" onClick={() => setToCancel(a)}>
+                      Cancel
+                    </Button>
+                  </>
+                ) : null}
+                <Button variant="ghost" size="sm" onClick={() => onView(a)}>
+                  View
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="card" style={{ overflow: 'hidden', borderColor: highlight ? 'var(--primary)' : undefined }}>
         <div className="table-wrap">
           <table className="table">
             <thead>
@@ -174,10 +215,11 @@ function QueueGroup({ title, rows, onView, checkIn, setRescheduling, setToCancel
                   </td>
                 </tr>
               ))}
-            </tbody>
-          </table>
+</tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

@@ -13,6 +13,7 @@ import ErrorState from '../../components/ErrorState';
 import EmptyState from '../../components/EmptyState';
 import AppointmentDetail from '../../components/AppointmentDetail';
 import ConsultDialog from '../../components/ConsultDialog';
+import { useIsMobile } from '../../hooks/useMedia';
 
 const ACTIVE = ['SCHEDULED', 'WAITING', 'IN_CONSULT'];
 
@@ -76,10 +77,46 @@ export default function DoctorQueuePage() {
 }
 
 function QueueRows({ title, rows, onStart, onView, onComplete, highlight }) {
+  const isMobile = useIsMobile();
+
   return (
     <section>
       <h2 className="mb-2">{title}</h2>
-      <div className="card" style={{ overflow: 'hidden', borderColor: highlight ? 'var(--primary)' : undefined }}>
+      {isMobile ? (
+        <div className="m-list">
+          {rows.map((a) => (
+            <div key={a.id} className={`card card-pad m-card ${highlight ? 'm-card-hl' : ''}`}>
+              <div className="m-card-top">
+                <span className="m-pos">{a.queuePosition ? `#${a.queuePosition}` : '—'}</span>
+                <span className="m-card-when num">{to12(a.startTime)}</span>
+                <StatusBadge status={a.status} />
+              </div>
+              <div className="m-card-name">{a.patient?.name}</div>
+              {a.reason ? <div className="m-card-sub">{a.reason}</div> : null}
+              <div className="m-card-sub">{a.patient?.phone || ''}</div>
+              <div className="m-card-sub">
+                Est. wait · <span className="num">{waitLabel(a.estimatedWait)}</span>
+              </div>
+              <div className="m-card-actions">
+                {a.status === 'WAITING' ? (
+                  <Button variant="primary" size="sm" disabled={onStart.isPending} onClick={() => onStart.mutate(a.id)}>
+                    <Play size={12} /> Start
+                  </Button>
+                ) : null}
+                {a.status === 'IN_CONSULT' ? (
+                  <Button variant="primary" size="sm" onClick={() => onComplete(a)}>
+                    Complete
+                  </Button>
+                ) : null}
+                <Button variant="ghost" size="sm" onClick={() => onView(a)}>
+                  View
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="card" style={{ overflow: 'hidden', borderColor: highlight ? 'var(--primary)' : undefined }}>
         <div className="table-wrap">
           <table className="table">
             <thead>
@@ -122,10 +159,11 @@ function QueueRows({ title, rows, onStart, onView, onComplete, highlight }) {
                   </td>
                 </tr>
               ))}
-            </tbody>
-          </table>
+</tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

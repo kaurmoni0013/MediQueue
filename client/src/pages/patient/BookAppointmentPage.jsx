@@ -141,7 +141,7 @@ export default function BookAppointmentPage() {
       </div>
 
       {/* Stepper */}
-      <div className="flex mb-3" style={{ gap: 0 }}>
+      <div className="flex stepper mb-3" style={{ gap: 0 }}>
         {STEPS.map((s, i) => (
           <div key={s.id} className="wizard-step" style={{ flex: '0 0 auto' }}>
             <span className="n">{s.id}</span>
